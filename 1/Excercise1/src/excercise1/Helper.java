@@ -8,25 +8,17 @@ package excercise1;
 import java.util.Scanner;
 
 /**
- * Helper methods for asking the user for input
- * @author johan
+ * @author Johan van den Heuvel s47704528
+ * @author Niels Korporaal s4768256
  */
 public class Helper {
     
-    /**
-     * Ask the user to input a number
-     * @return user-inputted number
-     */
     public static int queryNumber(){
         System.out.println("Enter a number");
         Scanner reader = new Scanner(System.in);
         return reader.nextInt();
     }
     
-    /**
-     * Ask the user to input a Name (first and second)
-     * @return user-inputted Name
-     */
     public static Name queryName(){
         Scanner reader = new Scanner(System.in);
         System.out.println("Enter the first and second name, seperated by one space");

@@ -9,18 +9,12 @@ import static excercise1.Helper.queryName;
 import static excercise1.Helper.queryNumber;
 
 /**
- * A Class which is a array of Student. 
- * Student is a class consisting of a Name (first and second) and a 
- * studentnumber
- * @author johan
+ * @author Johan van den Heuvel s47704528
+ * @author Niels Korporaal s4768256
  */
 public class Group {
     private Student[] students;
 
-    /**
-     * 
-     * @param groupSize 
-     */
     public Group(int groupSize) {
         this.students = new Student[groupSize];
     }
@@ -29,8 +23,9 @@ public class Group {
      * Loop through the array and fill every element
      */
     public void fillGroup(){
+        System.out.println("--Filling--");
         for (int i = 0; i < students.length; i++) {
-            System.out.println("Student:" + (i + 1));
+            System.out.println("\n" + "Student:" + (i + 1));
             System.out.println("New student:");
             students[i] = new Student(queryName(), queryNumber());
         }
@@ -41,7 +36,8 @@ public class Group {
      * the Name of the entered student will be changed.
      */
     public void update(){
-        int studentNumber = 0;
+        System.out.println("--Updating--");
+        int studentNumber;
         do {        
             System.out.println("Student number:");
             studentNumber = queryNumber();
@@ -60,7 +56,7 @@ public class Group {
     @Override
     public String toString(){
         String s = "";
-        s = s.concat("The group now contains:" + '\n');
+        s = s.concat("\n" + "The group now contains:" + '\n');
         for (Student student : students) {
             s = s.concat(student.toString() + '\n');
         }

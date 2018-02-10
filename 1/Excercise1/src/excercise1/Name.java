@@ -5,56 +5,32 @@
  */
 package excercise1;
 
-import java.util.Scanner;
-
 /**
- * Class consiting of a fist and second name of someone
- * @author johan
+ * @author Johan van den Heuvel s47704528
+ * @author Niels Korporaal s4768256
  */
 public class Name {
     private String firstName;
     private String secondName;
 
-    /**
-     * Constructor
-     * @param firstName
-     * @param secondName 
-     */
     public Name(String firstName, String secondName) {
         this.firstName = firstName;
         this.secondName = secondName;
     }
 
-    /**
-     *
-     * @param firstName 
-     */
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
 
-    /**
-     * 
-     * @param secondName 
-     */
     public void setSecondName(String secondName) {
         this.secondName = secondName;
     }
     
-    /**
-     * 
-     * @param firstName
-     * @param secondName 
-     */
     public void setName(String firstName, String secondName) {
         this.firstName = firstName;
         this.secondName = secondName;
     }
     
-    /**
-     * returns first and second name as a String
-     * @return 
-     */
     @Override
     public String toString(){
         return this.firstName + " " + this.secondName;
