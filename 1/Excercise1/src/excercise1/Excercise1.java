@@ -24,7 +24,7 @@ public class Excercise1 {
         System.out.print("Group size:");
         Group group = new Group(queryNumber());
         group.fillGroup();
-        System.out.println(group);
+        System.out.println(group.toString());
         group.update();
     }
 }

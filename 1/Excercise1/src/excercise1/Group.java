@@ -51,9 +51,10 @@ public class Group {
                         student.setName(queryName());
                     }
                 }
-                System.out.println(students);
+                System.out.println(toString());
             }
         } while (studentNumber > 0);
+        System.out.println("Program terminated");
     }
     
     @Override
