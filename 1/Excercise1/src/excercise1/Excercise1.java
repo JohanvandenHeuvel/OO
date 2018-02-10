@@ -12,7 +12,7 @@ import static excercise1.Helper.queryNumber;
  * The goal is the make a Student Class, which are grouped in a 
  * Group Class. 
  * @author Johan van den Heuvel
- * @author Niels Korporaal
+ * @author Niels Korporaal s4768256
  */
 public class Excercise1 {
 
