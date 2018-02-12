@@ -15,11 +15,10 @@ public class Excercise2 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        
-        Gallows g = new Gallows("topkek");
-        g.playGame();
-        
-        
+        GallowsModel gM = new GallowsModel("topkek");
+        GallowsView gV = new GallowsView();
+        GallowsController gC = new GallowsController(gM, gV);
+        gC.playGame();
     }
-    
+
 }
