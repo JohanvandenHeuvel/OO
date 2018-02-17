@@ -16,6 +16,7 @@ import java.util.Arrays;
 public class GallowsModel {
 
     private StringBuilder correctGuessed;
+    private StringBuilder allGuessed = new StringBuilder();
     private final String word;
     private int error;
     private final int limit = 10;
@@ -46,13 +47,14 @@ public class GallowsModel {
      */
     public Boolean makeGuess(char ch) {
         int index = word.indexOf(ch);
-
+        updateAllGuessed(ch);
         if (index >= 0) {
             updateStringBuilder(ch);
             return true;
         }
-
-        error = error + 1;
+        System.out.print("You guessed: ");
+        printAllGuessed();
+        error += 1;
         return false;
     }
 
@@ -92,5 +94,23 @@ public class GallowsModel {
 
     public String getCorrectGuessed() {
         return correctGuessed.toString();
+    }
+
+    public void updateAllGuessed(char ch) {
+        this.allGuessed = allGuessed.append(Character.toString(ch));
+    }
+
+    public String getAllGuessed() {
+        return allGuessed.toString();
+    }
+
+    private void printAllGuessed() {
+        for (int i = 0; i < allGuessed.length(); i++) {
+            System.out.print(allGuessed.charAt(i));
+            if(i < allGuessed.length()-1){
+                System.out.print(", ");
+            }
+        }
+        System.out.println();
     }
 }

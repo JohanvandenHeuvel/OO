@@ -5,6 +5,7 @@
  */
 package excercise2;
 
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -13,12 +14,13 @@ import java.util.Scanner;
  * @author Niels Korporaal s4768256
  */
 public class GallowsView {
-
+    
     public static char queryUser() {
         Scanner reader = new Scanner(System.in);
         System.out.println("Enter a letter to make a guess:");
         String s = reader.next();
-        return s.charAt(0);
+        char ch = s.charAt(0);
+        return ch;
     }
 
     public static void printGameState(GallowsModel gallowsModel, Boolean guess) {
