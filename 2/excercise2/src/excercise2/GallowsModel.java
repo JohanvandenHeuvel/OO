@@ -9,7 +9,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
- *
+ * The Model of Gallows, according to the MVC paradigm.
+ * The model represents data and the rules that govern access to 
+ * and updates of this data. In enterprise software, 
+ * a model often serves as a software approximation 
+ * of a real-world process.
  * @author Johan van den Heuvel s47704528
  * @author Niels Korporaal s4768256
  */
@@ -19,7 +23,7 @@ public class GallowsModel {
     private ArrayList<Character> hasGuessed = new ArrayList<>();
     private final String word;
     private int error;
-    private final int limit = 10;
+    private final int errorLimit = 10;
 
     public GallowsModel() {
         String filename = "words.txt";
@@ -39,7 +43,9 @@ public class GallowsModel {
     }
 
     /**
-     *
+     * Checks if character occurs in word. 
+     * If the character does occur the correctGuessed is updated
+     * If the character does not occur the error is incremented by one
      * @param ch guessed character
      * @return Boolean if correct guess
      */
@@ -55,6 +61,10 @@ public class GallowsModel {
         return false;
     }
 
+    /**
+     * @param ch character to look for
+     * @return list of indexes of ch in word
+     */
     private ArrayList<Integer> indexCharInString(char ch) {
         ArrayList<Integer> list = new ArrayList<Integer>();
         for (int i = 0; i < word.length(); i++) {
@@ -82,7 +92,7 @@ public class GallowsModel {
     }
 
     public Boolean loseCondition() {
-        return error >= limit;
+        return error >= errorLimit;
     }
 
     public int getError() {
@@ -92,6 +102,7 @@ public class GallowsModel {
     public String getCorrectGuessed() {
         return correctGuessed.toString();
     }
+<<<<<<< HEAD
 
     public void updateHasGuessed(char ch) {
         this.hasGuessed.add(ch);
@@ -99,5 +110,17 @@ public class GallowsModel {
 
     public String getHasGuessed() {
         return hasGuessed.toString();
+=======
+    
+    /**
+     * Only returns word if won or lost
+     * @return word to be guessed
+     */
+    public String solution(){
+        if(loseCondition() || winCondition()){
+            return word;
+        }
+        return "";
+>>>>>>> master
     }
 }
