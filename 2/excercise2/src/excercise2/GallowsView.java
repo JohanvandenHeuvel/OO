@@ -17,15 +17,11 @@ import java.util.Scanner;
  * @author Niels Korporaal s4768256
  */
 public class GallowsView {
-<<<<<<< HEAD
-    
-=======
 
     /**
      * Query the user to enter a character
      * @return first character of entered string
      */
->>>>>>> master
     public static char queryUser() {
         Scanner reader = new Scanner(System.in);
         System.out.println("Enter a letter to make a guess:");
@@ -35,6 +31,7 @@ public class GallowsView {
     }
 
     public static void printGameState(GallowsModel gallowsModel, Boolean guess) {
+        System.out.println ("You guessed: " + gallowsModel.getHasGuessed());
         System.out.println(gallowsModel.getCorrectGuessed());
         System.out.println((guess) ? ("Correct guess") : ("Wrong guess, error:" + gallowsModel.getError()));
         System.out.println("");

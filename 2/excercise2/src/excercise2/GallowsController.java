@@ -29,7 +29,9 @@ public class GallowsController {
      * @return 
      */
     public Boolean playRound() {
-        return gallowsModel.makeGuess(gallowsView.queryUser());
+        char ch = gallowsView.queryUser();
+        gallowsModel.updateHasGuessed(ch);
+        return gallowsModel.makeGuess(ch);
     }
 
     /**

@@ -51,8 +51,6 @@ public class GallowsModel {
      */
     public Boolean makeGuess(char ch) {
         int index = word.indexOf(ch);
-        updateHasGuessed(ch);
-        System.out.println ("You guessed: " + getHasGuessed());
         if (index >= 0) {
             updateStringBuilder(ch);
             return true;
@@ -102,7 +100,6 @@ public class GallowsModel {
     public String getCorrectGuessed() {
         return correctGuessed.toString();
     }
-<<<<<<< HEAD
 
     public void updateHasGuessed(char ch) {
         this.hasGuessed.add(ch);
@@ -110,7 +107,7 @@ public class GallowsModel {
 
     public String getHasGuessed() {
         return hasGuessed.toString();
-=======
+    }
     
     /**
      * Only returns word if won or lost
@@ -121,6 +118,5 @@ public class GallowsModel {
             return word;
         }
         return "";
->>>>>>> master
     }
 }
