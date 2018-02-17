@@ -21,5 +21,4 @@ public class Excercise2 {
         GallowsController gC = new GallowsController(gM, gV);
         gC.playGame();
     }
-
 }

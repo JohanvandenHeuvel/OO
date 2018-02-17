@@ -16,7 +16,7 @@ import java.util.Arrays;
 public class GallowsModel {
 
     private StringBuilder correctGuessed;
-    private StringBuilder allGuessed = new StringBuilder();
+    private ArrayList<Character> hasGuessed = new ArrayList<>();
     private final String word;
     private int error;
     private final int limit = 10;
@@ -25,13 +25,11 @@ public class GallowsModel {
         String filename = "words.txt";
         WordReader wr = new WordReader(filename);
         this.word = wr.getWord();
-
         restartGame();
     }
 
     public GallowsModel(String word) {
         this.word = word;
-
         restartGame();
     }
 
@@ -47,13 +45,12 @@ public class GallowsModel {
      */
     public Boolean makeGuess(char ch) {
         int index = word.indexOf(ch);
-        updateAllGuessed(ch);
+        updateHasGuessed(ch);
+        System.out.println ("You guessed: " + getHasGuessed());
         if (index >= 0) {
             updateStringBuilder(ch);
             return true;
         }
-        System.out.print("You guessed: ");
-        printAllGuessed();
         error += 1;
         return false;
     }
@@ -96,21 +93,11 @@ public class GallowsModel {
         return correctGuessed.toString();
     }
 
-    public void updateAllGuessed(char ch) {
-        this.allGuessed = allGuessed.append(Character.toString(ch));
+    public void updateHasGuessed(char ch) {
+        this.hasGuessed.add(ch);
     }
 
-    public String getAllGuessed() {
-        return allGuessed.toString();
-    }
-
-    private void printAllGuessed() {
-        for (int i = 0; i < allGuessed.length(); i++) {
-            System.out.print(allGuessed.charAt(i));
-            if(i < allGuessed.length()-1){
-                System.out.print(", ");
-            }
-        }
-        System.out.println();
+    public String getHasGuessed() {
+        return hasGuessed.toString();
     }
 }
