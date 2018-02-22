@@ -9,7 +9,7 @@ package excercise3;
  *
  * @author johan
  */
-public class Rectangle implements GeometricInterface{
+public class Rectangle implements Geometric, Comparable<Geometric>{
     private double x;
     private double y;
     private double width;
@@ -60,13 +60,7 @@ public class Rectangle implements GeometricInterface{
     }
     
     @Override
-    public int compareTo(GeometricInterface rect){
-        double difference = this.getArea() - rect.getArea();
-        
-        if(difference < 0){return -1;}
-        else if(difference > 0){return 1;}
-        
-        return 0;
-    }
-    
+    public int compareTo(Geometric o){
+        return Double.compare(this.getArea(), o.getArea());
+    } 
 }

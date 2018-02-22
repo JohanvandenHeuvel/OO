@@ -9,7 +9,7 @@ package excercise3;
  *
  * @author johan
  */
-public class Circle implements GeometricInterface{
+public class Circle implements Geometric{
     private double x;
     private double y;
     private double radius;
@@ -58,13 +58,7 @@ public class Circle implements GeometricInterface{
     }
     
     @Override
-    public int compareTo(GeometricInterface circle){
-        double difference = this.getArea() - circle.getArea();
-        
-        if(difference < 0){return -1;}
-        else if(difference > 0){return 1;}
-        
-        return 0;
-    }
-    
+    public int compareTo(Geometric o){
+        return Double.compare(this.getArea(), o.getArea());
+    }    
 }

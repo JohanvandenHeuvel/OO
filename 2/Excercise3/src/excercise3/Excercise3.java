@@ -25,9 +25,7 @@ public class Excercise3 {
     }
     
     public static void run(GeometricGroup gg){
-        Scanner reader = new Scanner(System.in);
-        System.out.println("Enter a command");
-        gg.commands(reader.nextLine());
+        gg.commands();
     }
     
 }  

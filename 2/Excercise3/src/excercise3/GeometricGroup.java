@@ -5,40 +5,51 @@
  */
 package excercise3;
 
+import java.util.Arrays;
+
 /**
  *
  * @author johan
  */
 public class GeometricGroup {
 
-    private final int ARRAYSIZE = 10;
-    GeometricInterface[] shapes = new GeometricInterface[ARRAYSIZE];
+    private final int ARRAYSIZE = 3;
+    Geometric[] shapes = new Geometric[ARRAYSIZE];
     boolean[] indexFilled = new boolean[ARRAYSIZE];
 
-    public void commands(String command) {
+    public void commands() {
+        String[] userInput = GeometricView.queryInput();
+        String command = userInput[0];
+        
         switch (command) {
             case "quit":
                 quit();
                 break;
             case "show":
-                show();
+//                show();
                 break;
             case "circle":
-                createCircle();
+                createCircle(GeometricView.stringToDouble(userInput, 1));
                 break;
             case "rectangle":
-                createRectangle();
+                createRectangle(GeometricView.stringToDouble(userInput, 1));
                 break;
             case "move":
-                move();
+                move(GeometricView.stringToDouble(userInput, 1));
                 break;
             case "remove":
-                remove();
+                remove(GeometricView.stringToDouble(userInput, 1));
                 break;
             case "sort":
-                sort();
+                if(userInput.length > 1){
+                    sort(userInput[1].charAt(0));
+                }
+                else{
+                    sort();
+                }
                 break;
         }
+        show();
     }
 
     public void quit() {
@@ -49,8 +60,7 @@ public class GeometricGroup {
         GeometricView.show(this);
     }
     
-    public void createCircle() {
-        double[] userInput = GeometricView.queryCircle();
+    public void createCircle(double[] userInput) {
         int emptyIndex = emptyIndex();
         shapes[emptyIndex] = new Circle(
                     userInput[0],
@@ -59,8 +69,7 @@ public class GeometricGroup {
         indexFilled[emptyIndex] = true;
     }
     
-    public void createRectangle() {
-        double[] userInput = GeometricView.queryRectangle();
+    public void createRectangle(double[] userInput) {
         int emptyIndex = emptyIndex();
         shapes[emptyIndex] = new Rectangle(
                     userInput[0],
@@ -70,20 +79,27 @@ public class GeometricGroup {
         indexFilled[emptyIndex] = true;
     }
 
-    public void move() {
-        String[] userInput = GeometricView.queryMove();
-        this.shapes[Integer.parseInt(userInput[0])].move(
-                Double.parseDouble(userInput[1]),
-                Double.parseDouble(userInput[2]));
+    public void move(double[] userInput) {
+        this.shapes[(int)userInput[0]].move(
+                userInput[1],
+                userInput[2]);
     }
 
-    public void remove() {
-        String[] userInput = GeometricView.queryRemove();
-        this.shapes[Integer.parseInt(userInput[0])] = null;
+    public void remove(double[] userInput) {
+        this.shapes[(int)userInput[0]] = null;
     }
 
     public void sort() {
-        
+        Arrays.sort(shapes);
+    }
+    
+    public void sort(char arg) {
+        if (arg == 'x') {
+            Arrays.sort(shapes, new GeometricCompareX());
+        }
+        if (arg == 'y') {
+            Arrays.sort(shapes, new GeometricCompareY());
+        }
     }
 
     private int emptyIndex() {
@@ -101,7 +117,7 @@ public class GeometricGroup {
         s = s.concat("\n" + "The group now contains:" + '\n');
         for (int i = 0; i < this.shapes.length; i++) {
             if(indexFilled[i]){
-                s = "Shape " + i + " " + s.concat(this.shapes[i].toString() + '\n');
+                s = s.concat("index:" + i + " " + this.shapes[i].toString() + '\n');
             }
         }
         return s;

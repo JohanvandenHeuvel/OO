@@ -11,11 +11,10 @@ import java.util.Comparator;
  *
  * @author johan
  */
-public interface Geometric extends Comparable<Geometric>{    
-    public double getLeft();
-    public double getRight();
-    public double getTop();
-    public double getBottom();
-    public double getArea();
-    public void move(double dx, double dy);
+public class GeometricCompareX implements Comparator<Geometric> {
+    
+    @Override
+    public int compare(Geometric o1, Geometric o2) {
+        return Double.compare(o1.getLeft(), o2.getLeft());
+    }
 }
