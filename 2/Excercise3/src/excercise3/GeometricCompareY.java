@@ -15,6 +15,15 @@ public class GeometricCompareY implements Comparator<Geometric> {
     
     @Override
     public int compare(Geometric o1, Geometric o2) {
+        if(o1 == null && o2 == null){
+            return 0;
+        }
+        if(o1 == null){
+            return 1;
+        }
+        if(o2 == null){
+            return -1;
+        }
         return Double.compare(o1.getBottom(), o2.getBottom());
     }
 }

@@ -101,7 +101,7 @@ public class GeometricGroup {
     }
 
     public void sort() {
-        Arrays.sort(shapes);
+        Arrays.sort(shapes, new GeometricCompare());
     }
     
     public void sort(char arg) {
