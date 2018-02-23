@@ -18,7 +18,7 @@ public class Excercise3 {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        GeometricGroup gg = new GeometricGroup();
+        GeometricGroup gg = new GeometricGroup(10);
         while (true) {  
             run(gg);
         }

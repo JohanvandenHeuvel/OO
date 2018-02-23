@@ -23,12 +23,4 @@ public class GeometricView {
         String s = reader.nextLine();
         return s.split(" ");
     }
-    
-    public static double[] stringToDouble(String[] s, int from){
-        double[] d = new double[s.length-from];
-        for (int i = from; i < s.length; i++) {
-            d[i-from] = Double.parseDouble(s[i]);
-        }
-        return d;
-    }
 }

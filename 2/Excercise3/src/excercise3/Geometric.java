@@ -11,7 +11,7 @@ import java.util.Comparator;
  *
  * @author johan
  */
-public interface Geometric extends Comparable<Geometric>{    
+public interface Geometric extends Comparable<Geometric>{
     public double getLeft();
     public double getRight();
     public double getTop();

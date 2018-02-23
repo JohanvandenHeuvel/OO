@@ -13,9 +13,13 @@ import java.util.Arrays;
  */
 public class GeometricGroup {
 
-    private final int ARRAYSIZE = 3;
-    Geometric[] shapes = new Geometric[ARRAYSIZE];
-    boolean[] indexFilled = new boolean[ARRAYSIZE];
+    private final int ARRAYSIZE;
+    Geometric[] shapes;
+
+    public GeometricGroup(int arraysize) {
+        this.ARRAYSIZE = arraysize;
+        this.shapes = new Geometric[ARRAYSIZE];
+    }
 
     public void commands() {
         String[] userInput = GeometricView.queryInput();
@@ -26,19 +30,18 @@ public class GeometricGroup {
                 quit();
                 break;
             case "show":
-//                show();
                 break;
             case "circle":
-                createCircle(GeometricView.stringToDouble(userInput, 1));
+                createCircle(stringToDouble(userInput, 1));
                 break;
             case "rectangle":
-                createRectangle(GeometricView.stringToDouble(userInput, 1));
+                createRectangle(stringToDouble(userInput, 1));
                 break;
             case "move":
-                move(GeometricView.stringToDouble(userInput, 1));
+                move(stringToDouble(userInput, 1));
                 break;
             case "remove":
-                remove(GeometricView.stringToDouble(userInput, 1));
+                remove(stringToDouble(userInput, 1));
                 break;
             case "sort":
                 if(userInput.length > 1){
@@ -62,31 +65,39 @@ public class GeometricGroup {
     
     public void createCircle(double[] userInput) {
         int emptyIndex = emptyIndex();
-        shapes[emptyIndex] = new Circle(
+        if(emptyIndex >= 0){
+            shapes[emptyIndex] = new Circle(
                     userInput[0],
                     userInput[1],
                     userInput[2]);
-        indexFilled[emptyIndex] = true;
+        }
     }
     
     public void createRectangle(double[] userInput) {
         int emptyIndex = emptyIndex();
-        shapes[emptyIndex] = new Rectangle(
+        if(emptyIndex >= 0){
+            shapes[emptyIndex] = new Rectangle(
                     userInput[0],
                     userInput[1],
                     userInput[2],
                     userInput[3]);
-        indexFilled[emptyIndex] = true;
+        }
     }
 
     public void move(double[] userInput) {
-        this.shapes[(int)userInput[0]].move(
+        int index = (int)userInput[0];
+        if(index < ARRAYSIZE){
+            this.shapes[index].move(
                 userInput[1],
                 userInput[2]);
+        }
     }
 
     public void remove(double[] userInput) {
-        this.shapes[(int)userInput[0]] = null;
+        int index = (int)userInput[0];
+        if(index < ARRAYSIZE){
+            this.shapes[index] = null;
+        }
     }
 
     public void sort() {
@@ -103,12 +114,20 @@ public class GeometricGroup {
     }
 
     private int emptyIndex() {
-        for (int i = 0; i < 10; i++) {
-            if (!this.indexFilled[i]) {
+        for (int i = 0; i < ARRAYSIZE; i++) {
+            if (this.shapes[i] == null) {
                 return i;
             }
         }
         return -1;
+    }
+    
+    private static double[] stringToDouble(String[] s, int from){
+        double[] d = new double[s.length-from];
+        for (int i = from; i < s.length; i++) {
+            d[i-from] = Double.parseDouble(s[i]);
+        }
+        return d;
     }
 
     @Override
@@ -116,7 +135,7 @@ public class GeometricGroup {
         String s = "";
         s = s.concat("\n" + "The group now contains:" + '\n');
         for (int i = 0; i < this.shapes.length; i++) {
-            if(indexFilled[i]){
+            if(this.shapes[i] != null){
                 s = s.concat("index:" + i + " " + this.shapes[i].toString() + '\n');
             }
         }
