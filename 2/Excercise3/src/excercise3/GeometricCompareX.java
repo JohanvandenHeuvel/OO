@@ -8,8 +8,8 @@ package excercise3;
 import java.util.Comparator;
 
 /**
- *
- * @author johan
+ * @author Johan van den Heuvel s47704528
+ * @author Niels Korporaal s4768256
  */
 public class GeometricCompareX implements Comparator<Geometric> {
     
