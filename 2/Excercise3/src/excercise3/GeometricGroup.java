@@ -63,6 +63,11 @@ public class GeometricGroup {
         GeometricView.show(this);
     }
     
+    /**
+     * adds a Circle
+     * @param userInput an array containing the (x,y) coordinates and the 
+     * radius
+     */
     public void createCircle(double[] userInput) {
         int emptyIndex = emptyIndex();
         if(emptyIndex >= 0){
@@ -73,6 +78,11 @@ public class GeometricGroup {
         }
     }
     
+    /**
+     * adds a Rectangle 
+     * @param userInput an array containing the (x,y) coordinates and the 
+     * width and heigth
+     */
     public void createRectangle(double[] userInput) {
         int emptyIndex = emptyIndex();
         if(emptyIndex >= 0){
@@ -84,6 +94,10 @@ public class GeometricGroup {
         }
     }
 
+    /**
+     * Move to given (x,y) coordinate
+     * @param userInput 
+     */
     public void move(double[] userInput) {
         int index = (int)userInput[0];
         if(index < ARRAYSIZE){
@@ -104,6 +118,10 @@ public class GeometricGroup {
         Arrays.sort(shapes, new GeometricCompare());
     }
     
+    /**
+     * Sort by x:most left point, y:lowest point
+     * @param arg 
+     */
     public void sort(char arg) {
         if (arg == 'x') {
             Arrays.sort(shapes, new GeometricCompareX());
