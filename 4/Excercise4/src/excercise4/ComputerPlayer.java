@@ -34,9 +34,11 @@ public class ComputerPlayer implements Player
     }
 
     @Override
-    public void play(Board board)
+    public int play(Board board)
     {
-       board.play(strategy.runStrategy(board, this), this);
+       int x = strategy.runStrategy(board, this);
+       board.play(x, this);
+       return x;
     }
     
     @Override

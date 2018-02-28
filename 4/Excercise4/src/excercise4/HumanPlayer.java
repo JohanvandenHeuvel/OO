@@ -32,10 +32,11 @@ public class HumanPlayer implements Player
     }
 
     @Override
-    public void play(Board board)
+    public int play(Board board)
     {
         int x = IO.queryInput();
         board.play(x, this);
+        return x;
     }
     
     @Override

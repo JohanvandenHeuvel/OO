@@ -12,5 +12,5 @@ package excercise4;
 public interface Player {
     public void setColor(Field f);
     public Field getColor();
-    public void play(Board board);
+    public int play(Board board);
 }

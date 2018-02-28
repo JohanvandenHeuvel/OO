@@ -37,11 +37,12 @@ public class Game {
      * @return 
      */
     public Player play() {
+        int col = 0;
         do {   
             nextPlayer();
-            players[currentPlayer].play(board);
+            col = players[currentPlayer].play(board);
             IO.printBoard(board);
-        } while (!board.winning(players[currentPlayer])); 
+        } while (!board.winning(players[currentPlayer], col)); 
         return players[currentPlayer];
     }
 }
