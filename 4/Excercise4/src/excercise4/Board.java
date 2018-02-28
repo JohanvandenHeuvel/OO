@@ -17,7 +17,6 @@ public class Board {
     private final int NR_ROW = 10;
     private Field[][] board;
 
-    
     public Board() {
         this.board = new Field[NR_ROW][NR_COL];
 
@@ -28,7 +27,7 @@ public class Board {
             }
         }
     }
-    
+
     public Board(Field[][] b) {
         this.board = new Field[NR_ROW][NR_COL];
 
@@ -84,21 +83,10 @@ public class Board {
      */
     public boolean check(int i, int j, Player p) {
         Field playerField = p.getColor();
+
         int counter;
 
         //Check vertical
-        counter = 0;
-        if (j + 3 < NR_COL) {
-            for (int k = 0; k < 4; k++) {
-                if (this.board[i][j + k] == p.getColor()) {
-                    counter++;
-                }
-            }
-        }
-        if (counter == 4) {
-            return true;
-        }
-
         counter = 0;
         if (j - 3 >= 0) {
             for (int k = 0; k < 4; k++) {
@@ -113,18 +101,6 @@ public class Board {
 
         //Check horizontal
         counter = 0;
-        if (i + 3 < NR_ROW) {
-            for (int k = 0; k < 4; k++) {
-                if (this.board[i + k][j] == p.getColor()) {
-                    counter++;
-                }
-            }
-        }
-        if (counter == 4) {
-            return true;
-        }
-
-        counter = 0;
         if (i - 3 >= 0) {
             for (int k = 0; k < 4; k++) {
                 if (this.board[i - k][j] == p.getColor()) {
@@ -138,35 +114,11 @@ public class Board {
 
         //Check diagonal
         counter = 0;
-        if (i + 3 < NR_ROW && j + 3 < NR_COL) {
-            for (int k = 0; k < 4; k++) {
-                if (this.board[i + k][j + k] == p.getColor()) {
-                        counter++;
-                    }
-            }
-        }
-        if (counter == 4) {
-            return true;
-        }
-
-        counter = 0;
-        if (i + 3 < NR_ROW && j - 3 >= 0) {
-            for (int k = 0; k < 4; k++) {
-                if (this.board[i + k][j - k] == p.getColor()) {
-                        counter++;
-                    }
-            }
-        }
-        if (counter == 4) {
-            return true;
-        }
-
-        counter = 0;
         if (i - 3 >= 0 && j + 3 < NR_COL) {
             for (int k = 0; k < 4; k++) {
                 if (this.board[i - k][j + k] == p.getColor()) {
-                        counter++;
-                    }
+                    counter++;
+                }
             }
         }
         if (counter == 4) {
@@ -177,8 +129,8 @@ public class Board {
         if (i - 3 >= 0 && j - 3 >= 0) {
             for (int k = 0; k < 4; k++) {
                 if (this.board[i - k][j - k] == p.getColor()) {
-                        counter++;
-                    }
+                    counter++;
+                }
             }
         }
         if (counter == 4) {
@@ -190,7 +142,8 @@ public class Board {
 
     /**
      * Returns a mutable copy of the current Board state
-     * @return 
+     *
+     * @return
      */
     public Field[][] copy() {
         Field[][] copy = new Field[NR_ROW][NR_COL];
