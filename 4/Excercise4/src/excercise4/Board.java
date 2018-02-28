@@ -6,8 +6,8 @@
 package excercise4;
 
 /**
- *
- * @author johan
+ * @author Johan van den Heuvel s47704528
+ * @author Niels Korporaal s4768256
  */
 public class Board {
 

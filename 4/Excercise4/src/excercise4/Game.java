@@ -7,8 +7,8 @@ package excercise4;
 
 /**
  * Class controlling the actions that Players take on the Board
- *
- * @author johan
+ * @author Johan van den Heuvel s47704528
+ * @author Niels Korporaal s4768256
  */
 public class Game {
 
