@@ -40,9 +40,17 @@ public class Game {
         int col;
         do {   
             nextPlayer();
-            col = players[currentPlayer].takeTurn(board);
+            col = players[currentPlayer].takeTurn(board, getOpponent());
             IO.printBoard(board);
         } while (!board.winning(players[currentPlayer], col)); 
         return players[currentPlayer];
+    }
+    
+    public Player getOpponent(){
+        int opponent = currentPlayer+1;
+        if (opponent >= players.length) {
+            opponent = 0;
+        }
+        return players[opponent];
     }
 }

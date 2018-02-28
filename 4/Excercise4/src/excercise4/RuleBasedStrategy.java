@@ -5,6 +5,8 @@
  */
 package excercise4;
 
+import java.util.Random;
+
 /**
  *
  * @author johan
@@ -12,48 +14,87 @@ package excercise4;
 public class RuleBasedStrategy implements Strategy {
 
     @Override
-    public int runStrategy(Board b, Player p) {
+    public int runStrategy(Board b, Player p, Player opponent) {
+        
         for (int i = 0; i < b.getNR_COL(); i++) {
-            if (winningMove(new Board(b.copy()), p, i)) {
+            if (nextMoveWin(b, p, opponent, i)) {
+                continue;
+            }
+            if (winningMove(b, p, i)) {
                 return i;
             }
-            if (winningMove(new Board(b.copy()), p, i)) {
+            if (fork(b, opponent, i)){
                 return i;
             }
-            if (fork(i)) {
-                return i;
-            }
-            if (nextMoveWin(i)) {
-                return i;
+            
+        }
+        return randomMove();
+    }
+    
+    /**
+     * 
+     * If I have a winning move, take it
+     * If the opoonent has a wining move, block it
+     * @param b
+     * @param p
+     * @param i
+     * @return 
+     */
+    public boolean winningMove(Board b, Player p, int i) {
+        Board temp = b.copy();
+        temp.addNewField(i, p);
+        return temp.winning(p, i);
+    }
+
+    /**
+     * If the opponent has a move that results in two winning conditions, block it
+     * @param i
+     * @return 
+     */
+    public boolean fork(Board b, Player opponent, int i) {
+        Board temp = b.copy();
+        temp.addNewField(i, opponent);
+        
+        int winCounter = 0;
+        for (int j = 0; j < b.getNR_COL(); j++) {
+            Board temp2 = temp.copy();
+            temp2.addNewField(j, opponent);
+            if (winningMove(temp, opponent, i)) {
+                winCounter++;
             }
         }
-        return bestMove();
+        return winCounter > 1;
     }
 
-    public boolean winningMove(Board b, Player p, int i) {
-        b.addNewField(i, p);
-//        return(b.winning(p));
+    /**
+     * Prevent move if would result in loss next turn
+     * @param b
+     * @param p
+     * @param opponent
+     * @param i
+     * @return 
+     */
+    public boolean nextMoveWin(Board b, Player p, Player opponent, int i) {
+        Board temp = b.copy();
+        temp.addNewField(i, p);
+        
+        for (int j = 0; j < b.getNR_COL(); j++) {
+            if(winningMove(temp, opponent, i)){
+                return true;
+            }
+        }
         return false;
-        /*
-        player does not matter, you always want to make a 4 row if possible
-        */
-//        1. If I have a winning move, take it.
-//        2. If the opponent has a winning move, block it.
     }
 
-    public boolean fork(int i) {
-//        3. If the opponent as a move that yields a fork (two winning moves), block it.
-        return false;
-    }
+    /**
+     * Make best possible move, preference for middle of the board
+     * @return 
+     */
+    public int randomMove() {
+        Random rand = new Random();
 
-    public boolean nextMoveWin(int i) {
-//        4. Prevent a own move that yields the opponent a winning move.
-        return false;
-    }
-
-    public int bestMove() {
-//        5. Make an allowed move preferably around the center of the board
-        return -1;
+        int  n = rand.nextInt(9);
+        return n;
     }
 
 }

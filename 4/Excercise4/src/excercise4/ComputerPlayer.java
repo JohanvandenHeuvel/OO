@@ -32,8 +32,8 @@ public class ComputerPlayer implements Player {
     }
 
     @Override
-    public int takeTurn(Board board) {
-        int x = strategy.runStrategy(board, this);
+    public int takeTurn(Board board, Player opponent) {
+        int x = strategy.runStrategy(board, this, opponent);
         board.addNewField(x, this);
         return x;
     }

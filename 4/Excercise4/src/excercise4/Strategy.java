@@ -10,5 +10,5 @@ package excercise4;
  * @author johan
  */
 public interface Strategy {
-    public int runStrategy(Board b, Player p);
+    public int runStrategy(Board b, Player p, Player opponent);
 }

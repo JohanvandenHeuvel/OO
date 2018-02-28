@@ -30,7 +30,7 @@ public class HumanPlayer implements Player {
     }
 
     @Override
-    public int takeTurn(Board board) {
+    public int takeTurn(Board board, Player opponent) {
         int x = IO.queryInput();
         board.addNewField(x, this);
         return x;
