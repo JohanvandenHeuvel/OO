@@ -5,8 +5,6 @@
  */
 package excercise4;
 
-import java.util.Arrays;
-
 /**
  *
  * @author johan
@@ -15,7 +13,7 @@ public class Board {
 
     private final int NR_COL = 10;
     private final int NR_ROW = 10;
-    private Field[][] board;
+    private final Field[][] board;
 
     public Board() {
         this.board = new Field[NR_ROW][NR_COL];
@@ -28,24 +26,25 @@ public class Board {
         }
     }
 
-    public Board(Field[][] b) {
+    public Board(Field[][] board) {
         this.board = new Field[NR_ROW][NR_COL];
 
-        //Fill the board with empty fields
+        //copy the board
         for (int i = 0; i < NR_COL; i++) {
-            for (int j = 0; j < NR_ROW; j++) {
-                this.board[i][j] = b[i][j];
-            }
+            System.arraycopy(board[i], 0, this.board[i], 0, NR_ROW);
+//            for (int j = 0; j < NR_ROW; j++) {
+//                this.board[i][j] = board[i][j];
+//            }
         }
     }
 
     /**
-     * Add a new piece to a specified colum for a player
+     * Add a new piece to a specified column for a player
      *
      * @param col
      * @param p
      */
-    public void play(int col, Player p) {
+    public void addNewField(int col, Player p) {
         for (int i = NR_ROW - 1; i >= 0; i--) {
             if (this.board[i][col] == Field.EMPTY) {
                 this.board[i][col] = p.getColor();
@@ -58,6 +57,7 @@ public class Board {
      * Check for each non-empty field on the board if it is part of a win
      *
      * @param p
+     * @param col
      * @return
      */
     public boolean winning(Player p, int col) {

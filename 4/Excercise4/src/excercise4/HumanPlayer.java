@@ -9,8 +9,8 @@ package excercise4;
  *
  * @author johan
  */
-public class HumanPlayer implements Player
-{
+public class HumanPlayer implements Player {
+
     private Field color;
     private String playerName;
 
@@ -20,28 +20,25 @@ public class HumanPlayer implements Player
     }
 
     @Override
-    public void setColor(Field f)
-    {
+    public void setColor(Field f) {
         color = f;
     }
 
     @Override
-    public Field getColor()
-    {
+    public Field getColor() {
         return color;
     }
 
     @Override
-    public int play(Board board)
-    {
+    public int takeTurn(Board board) {
         int x = IO.queryInput();
-        board.play(x, this);
+        board.addNewField(x, this);
         return x;
     }
-    
+
     @Override
-    public String toString(){
+    public String toString() {
         return playerName;
     }
-    
+
 }

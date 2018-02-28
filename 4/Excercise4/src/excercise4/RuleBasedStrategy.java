@@ -31,8 +31,9 @@ public class RuleBasedStrategy implements Strategy {
     }
 
     public boolean winningMove(Board b, Player p, int i) {
-        b.play(i, p);
-        return(b.winning(p));
+        b.addNewField(i, p);
+//        return(b.winning(p));
+        return false;
         /*
         player does not matter, you always want to make a 4 row if possible
         */

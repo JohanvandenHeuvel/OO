@@ -36,11 +36,11 @@ public class Game {
      * Else the next player plays a turn.
      * @return 
      */
-    public Player play() {
-        int col = 0;
+    public Player playTurn() {
+        int col;
         do {   
             nextPlayer();
-            col = players[currentPlayer].play(board);
+            col = players[currentPlayer].takeTurn(board);
             IO.printBoard(board);
         } while (!board.winning(players[currentPlayer], col)); 
         return players[currentPlayer];

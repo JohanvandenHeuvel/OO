@@ -24,7 +24,7 @@ public class Excercise4 {
         Board b = new Board();
         Game g = new Game(players, b);
         
-        Player winner = g.play();
+        Player winner = g.playTurn();
         IO.printWinner(winner);
     }
     
