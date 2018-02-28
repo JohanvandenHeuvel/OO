@@ -6,8 +6,8 @@
 package excercise4;
 
 /**
- *
- * @author johan
+ * @author Johan van den Heuvel s47704528
+ * @author Niels Korporaal s4768256
  */
 public class Excercise4 {
 
@@ -18,13 +18,14 @@ public class Excercise4 {
         Player p1 = new HumanPlayer(Field.RED, "player 1");
         Player p2 = new HumanPlayer(Field.YELLOW, "player 2");
         Player p3 = new ComputerPlayer(Field.YELLOW, "player 3", new RuleBasedStrategy());
+        Player p4 = new ComputerPlayer(Field.YELLOW, "player 4", new RuleBasedStrategy());
         
-        Player[] players = {p1,p2};
+        Player[] players = {p1,p3};
         
         Board b = new Board();
         Game g = new Game(players, b);
         
-        Player winner = g.play();
+        Player winner = g.playTurn();
         IO.printWinner(winner);
     }
     

@@ -6,13 +6,13 @@
 package excercise4;
 
 /**
- *
- * @author johan
+ * @author Johan van den Heuvel s47704528
+ * @author Niels Korporaal s4768256
  */
-public class HumanPlayer implements Player
-{
+public class HumanPlayer implements Player {
+
     private Field color;
-    private String playerName;
+    private final String playerName;
 
     public HumanPlayer(Field color, String playerName) {
         this.color = color;
@@ -20,28 +20,24 @@ public class HumanPlayer implements Player
     }
 
     @Override
-    public void setColor(Field f)
-    {
+    public void setColor(Field f) {
         color = f;
     }
 
     @Override
-    public Field getColor()
-    {
+    public Field getColor() {
         return color;
     }
 
     @Override
-    public int play(Board board)
-    {
+    public void takeTurn(Board board, Player opponent) {
         int x = IO.queryInput();
-        board.play(x, this);
-        return x;
+        board.addNewField(x, this);
     }
-    
+
     @Override
-    public String toString(){
+    public String toString() {
         return playerName;
     }
-    
+
 }

@@ -6,9 +6,9 @@
 package excercise4;
 
 /**
- *
- * @author johan
+ * @author Johan van den Heuvel s47704528
+ * @author Niels Korporaal s4768256
  */
 public interface Strategy {
-    public int runStrategy(Board b, Player p);
+    public int runStrategy(Board b, Player p, Player opponent);
 }

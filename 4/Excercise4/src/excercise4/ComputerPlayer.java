@@ -6,14 +6,14 @@
 package excercise4;
 
 /**
- *
- * @author johan
+ * @author Johan van den Heuvel s47704528
+ * @author Niels Korporaal s4768256
  */
-public class ComputerPlayer implements Player
-{
+public class ComputerPlayer implements Player {
+
     private Field color;
-    private String playerName;
-    private Strategy strategy;
+    private final String playerName;
+    private final Strategy strategy;
 
     public ComputerPlayer(Field color, String playerName, Strategy strategy) {
         this.color = color;
@@ -22,28 +22,24 @@ public class ComputerPlayer implements Player
     }
 
     @Override
-    public void setColor(Field f)
-    {
+    public void setColor(Field f) {
         color = f;
     }
 
     @Override
-    public Field getColor()
-    {
+    public Field getColor() {
         return color;
     }
 
     @Override
-    public int play(Board board)
-    {
-       int x = strategy.runStrategy(board, this);
-       board.play(x, this);
-       return x;
+    public void takeTurn(Board board, Player opponent) {
+        int x = strategy.runStrategy(board, this, opponent);
+        board.addNewField(x, this);
     }
-    
+
     @Override
-    public String toString(){
+    public String toString() {
         return playerName;
     }
-    
+
 }

@@ -5,17 +5,15 @@
  */
 package excercise4;
 
-import java.util.Arrays;
-
 /**
- *
- * @author johan
+ * @author Johan van den Heuvel s47704528
+ * @author Niels Korporaal s4768256
  */
 public class Board {
 
     private final int NR_COL = 10;
     private final int NR_ROW = 10;
-    private Field[][] board;
+    private final Field[][] board;
 
     public Board() {
         this.board = new Field[NR_ROW][NR_COL];
@@ -28,24 +26,22 @@ public class Board {
         }
     }
 
-    public Board(Field[][] b) {
+    public Board(Field[][] board) {
         this.board = new Field[NR_ROW][NR_COL];
 
-        //Fill the board with empty fields
+        //copy the board
         for (int i = 0; i < NR_COL; i++) {
-            for (int j = 0; j < NR_ROW; j++) {
-                this.board[i][j] = b[i][j];
-            }
+            System.arraycopy(board[i], 0, this.board[i], 0, NR_ROW);
         }
     }
 
     /**
-     * Add a new piece to a specified colum for a player
+     * Add a new piece to a specified column for a player
      *
      * @param col
      * @param p
      */
-    public void play(int col, Player p) {
+    public void addNewField(int col, Player p) {
         for (int i = NR_ROW - 1; i >= 0; i--) {
             if (this.board[i][col] == Field.EMPTY) {
                 this.board[i][col] = p.getColor();
@@ -60,7 +56,7 @@ public class Board {
      * @param p
      * @return
      */
-    public boolean winning(Player p, int col) {
+    public boolean winning(Player p) {
         for (int i = 0; i < NR_ROW; i++) {
             for (int j = 0; j < NR_COL; j++) {
                 if (this.board[i][j] != Field.EMPTY) {
@@ -82,8 +78,6 @@ public class Board {
      * @return
      */
     public boolean check(int i, int j, Player p) {
-        Field playerField = p.getColor();
-
         int counter;
 
         //Check vertical
@@ -145,14 +139,12 @@ public class Board {
      *
      * @return
      */
-    public Field[][] copy() {
+    public Board copy() {
         Field[][] copy = new Field[NR_ROW][NR_COL];
         for (int i = 0; i < NR_ROW; i++) {
-            for (int j = 0; j < NR_COL; j++) {
-                copy[i][j] = this.board[i][j];
-            }
+            System.arraycopy(this.board[i], 0, copy[i], 0, NR_COL);
         }
-        return copy;
+        return new Board(copy);
     }
 
     public int getNR_COL() {
