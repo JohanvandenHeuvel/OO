@@ -60,7 +60,7 @@ public class Board {
      * @param p
      * @return
      */
-    public boolean winning(Player p) {
+    public boolean winning(Player p, int col) {
         for (int i = 0; i < NR_ROW; i++) {
             for (int j = 0; j < NR_COL; j++) {
                 if (this.board[i][j] != Field.EMPTY) {
