@@ -9,35 +9,28 @@ package excercise4;
  *
  * @author johan
  */
-public enum Field
-{
+public enum Field {
     EMPTY("."), RED("X"), YELLOW("O");
 
     private final String asciiString;
 
-    private Field(String s)
-    {
+    private Field(String s) {
         this.asciiString = s;
     }
 
     //Make compare
-    public Field other()
-    {
-        if (this.equals(RED))
-        {
+    public Field other() {
+        if (this.equals(RED)) {
             return YELLOW;
-        } else if (this.equals(YELLOW))
-        {
+        } else if (this.equals(YELLOW)) {
             return RED;
-        } else
-        {
+        } else {
             return EMPTY;
         }
     }
 
     @Override
-    public String toString()
-    {
+    public String toString() {
         return asciiString;
     }
 }

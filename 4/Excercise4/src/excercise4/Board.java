@@ -32,9 +32,6 @@ public class Board {
         //copy the board
         for (int i = 0; i < NR_COL; i++) {
             System.arraycopy(board[i], 0, this.board[i], 0, NR_ROW);
-//            for (int j = 0; j < NR_ROW; j++) {
-//                this.board[i][j] = board[i][j];
-//            }
         }
     }
 
@@ -57,10 +54,9 @@ public class Board {
      * Check for each non-empty field on the board if it is part of a win
      *
      * @param p
-     * @param col
      * @return
      */
-    public boolean winning(Player p, int col) {
+    public boolean winning(Player p) {
         for (int i = 0; i < NR_ROW; i++) {
             for (int j = 0; j < NR_COL; j++) {
                 if (this.board[i][j] != Field.EMPTY) {
@@ -82,8 +78,6 @@ public class Board {
      * @return
      */
     public boolean check(int i, int j, Player p) {
-        Field playerField = p.getColor();
-
         int counter;
 
         //Check vertical
@@ -148,9 +142,7 @@ public class Board {
     public Board copy() {
         Field[][] copy = new Field[NR_ROW][NR_COL];
         for (int i = 0; i < NR_ROW; i++) {
-            for (int j = 0; j < NR_COL; j++) {
-                copy[i][j] = this.board[i][j];
-            }
+            System.arraycopy(this.board[i], 0, copy[i], 0, NR_COL);
         }
         return new Board(copy);
     }

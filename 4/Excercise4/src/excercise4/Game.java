@@ -7,10 +7,12 @@ package excercise4;
 
 /**
  * Class controlling the actions that Players take on the Board
+ *
  * @author johan
  */
 public class Game {
-    private Player[] players;
+
+    private final Player[] players;
     private Board board;
     private int currentPlayer;
 
@@ -31,23 +33,22 @@ public class Game {
     }
 
     /**
-     * The current player takes a turn.
-     * If move played this turn is winning then return current player. 
-     * Else the next player plays a turn.
-     * @return 
+     * The current player takes a turn. If move played this turn is winning then
+     * return current player. Else the next player plays a turn.
+     *
+     * @return
      */
     public Player playTurn() {
-        int col;
-        do {   
+        do {
             nextPlayer();
-            col = players[currentPlayer].takeTurn(board, getOpponent());
+            players[currentPlayer].takeTurn(board, getOpponent());
             IO.printBoard(board);
-        } while (!board.winning(players[currentPlayer], col)); 
+        } while (!board.winning(players[currentPlayer]));
         return players[currentPlayer];
     }
-    
-    public Player getOpponent(){
-        int opponent = currentPlayer+1;
+
+    public Player getOpponent() {
+        int opponent = currentPlayer + 1;
         if (opponent >= players.length) {
             opponent = 0;
         }

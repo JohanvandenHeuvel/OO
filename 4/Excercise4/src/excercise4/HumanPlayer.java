@@ -12,7 +12,7 @@ package excercise4;
 public class HumanPlayer implements Player {
 
     private Field color;
-    private String playerName;
+    private final String playerName;
 
     public HumanPlayer(Field color, String playerName) {
         this.color = color;
@@ -30,10 +30,9 @@ public class HumanPlayer implements Player {
     }
 
     @Override
-    public int takeTurn(Board board, Player opponent) {
+    public void takeTurn(Board board, Player opponent) {
         int x = IO.queryInput();
         board.addNewField(x, this);
-        return x;
     }
 
     @Override

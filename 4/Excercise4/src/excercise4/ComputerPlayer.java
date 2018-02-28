@@ -12,8 +12,8 @@ package excercise4;
 public class ComputerPlayer implements Player {
 
     private Field color;
-    private String playerName;
-    private Strategy strategy;
+    private final String playerName;
+    private final Strategy strategy;
 
     public ComputerPlayer(Field color, String playerName, Strategy strategy) {
         this.color = color;
@@ -32,10 +32,9 @@ public class ComputerPlayer implements Player {
     }
 
     @Override
-    public int takeTurn(Board board, Player opponent) {
+    public void takeTurn(Board board, Player opponent) {
         int x = strategy.runStrategy(board, this, opponent);
         board.addNewField(x, this);
-        return x;
     }
 
     @Override
