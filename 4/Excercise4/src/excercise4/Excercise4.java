@@ -15,10 +15,10 @@ public class Excercise4 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Player p1 = new HumanPlayer(Field.RED, "player 1");
-        Player p2 = new HumanPlayer(Field.YELLOW, "player 2");
-        Player p3 = new ComputerPlayer(Field.YELLOW, "player 3", new RuleBasedStrategy());
-        Player p4 = new ComputerPlayer(Field.YELLOW, "player 4", new RuleBasedStrategy());
+        Player p1 = new HumanPlayer(Field.RED, "player X");
+        Player p2 = new HumanPlayer(Field.YELLOW, "player O");
+        Player p3 = new ComputerPlayer(Field.YELLOW, "player O", new RuleBasedStrategy());
+        Player p4 = new ComputerPlayer(Field.YELLOW, "player O", new RuleBasedStrategy());
         
         Player[] players = {p1,p3};
         
