@@ -26,9 +26,15 @@ public class Addition extends DoubleArgumentExpression {
     public Expression eval(Map store) {
         Expression a = super.a.eval(store);
         Expression b = super.b.eval(store);
-        if(a.isConstant() && b.isConstant()){
+        if (a.isConstant() && b.isConstant()) {
             return new Constant(a.toConstant() + b.toConstant());
         }
-        return new Multiplication(a, b);
+        if (a.isConstant() && a.toConstant() == 0.0) {
+            return b;
+        }
+        if (b.isConstant() && b.toConstant() == 0.0) {
+            return a;
+        }
+        return new Addition(a, b);
     }
 }
