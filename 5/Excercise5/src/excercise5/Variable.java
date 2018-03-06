@@ -25,6 +25,9 @@ public class Variable extends ZeroArgumentExpression{
 
     @Override
     public Expression eval(Map store) {
+        if(store.containsKey(name)){
+            return new Constant((double)store.get(name));
+        }
         return this;
     }
 }

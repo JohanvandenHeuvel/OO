@@ -24,8 +24,9 @@ public class Negation extends SingleArgumentExpression{
 
     @Override
     public Expression eval(Map store) {
+        Expression a = super.a.eval(store);
         if(a.isConstant()){
-            return new Constant(-1.0*a.toConstant());
+            return new Constant(-1.*a.toConstant());
         }
         return this;
     }

@@ -24,6 +24,7 @@ public class Square extends SingleArgumentExpression{
 
     @Override
     public Expression eval(Map store) {
+        Expression a = super.a.eval(store);
         if(a.isConstant()){
             return new Constant(a.toConstant()*a.toConstant());
         }
