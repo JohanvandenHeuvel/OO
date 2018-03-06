@@ -24,8 +24,7 @@ public class Variable extends ZeroArgumentExpression{
     }
 
     @Override
-    public double eval(Map store) {
-        //implement the hasb table like in the example
-        return (double) store.get(name);
+    public Expression eval(Map store) {
+        return this;
     }
 }

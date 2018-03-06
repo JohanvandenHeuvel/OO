@@ -12,5 +12,19 @@ import java.util.Map;
  * @author johan
  */
 public abstract class Expression {
-    abstract public double eval(Map store);
+
+    abstract public Expression eval(Map store);
+
+    public boolean isConstant() {
+        try {
+            Double.parseDouble(this.toString());
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+    
+    public double toConstant() {
+        return (double) Double.parseDouble(this.toString());
+    }
 }

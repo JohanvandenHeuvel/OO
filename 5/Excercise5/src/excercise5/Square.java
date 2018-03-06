@@ -23,7 +23,10 @@ public class Square extends SingleArgumentExpression{
     }
 
     @Override
-    public double eval(Map store) {
-        return a.eval(store)*a.eval(store);
+    public Expression eval(Map store) {
+        if(a.isConstant()){
+            return new Constant(a.toConstant()*a.toConstant());
+        }
+        return this;
     }
 }

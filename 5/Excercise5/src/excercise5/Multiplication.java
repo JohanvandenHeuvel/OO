@@ -23,8 +23,12 @@ public class Multiplication extends DoubleArgumentExpression {
     }
 
     @Override
-    public double eval(Map store) {
-        return a.eval(store) * b.eval(store);
+    public Expression eval(Map store) {
+        Expression a = super.a.eval(store);
+        Expression b = super.b.eval(store);
+        if(a.isConstant() && b.isConstant()){
+            return new Constant(a.toConstant() * b.toConstant());
+        }
+        return new Multiplication(a, b);
     }
-
 }

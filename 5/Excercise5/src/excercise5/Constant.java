@@ -24,7 +24,7 @@ public class Constant extends ZeroArgumentExpression{
     }
 
     @Override
-    public double eval(Map store) {
-        return value;
-    }
+    public Expression eval(Map store) {
+        return this;
+    }   
 }

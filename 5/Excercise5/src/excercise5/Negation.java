@@ -23,7 +23,10 @@ public class Negation extends SingleArgumentExpression{
     }
 
     @Override
-    public double eval(Map store) {
-        return -1.0 * a.eval(store);
+    public Expression eval(Map store) {
+        if(a.isConstant()){
+            return new Constant(-1.0*a.toConstant());
+        }
+        return this;
     }
 }

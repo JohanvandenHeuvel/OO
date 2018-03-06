@@ -23,17 +23,17 @@ public class Excercise5 {
         store.put("x", 42.);
 
         Variable v = new Variable("y");
-        System.out.println(v);
         
         Constant d = new Constant(5);
         
         Constant c = new Constant(10);
-        System.out.println(c);
         
         Addition a = new Addition(d, c);
         
         Multiplication ac = new Multiplication(a, v);
         System.out.println(ac);
+        
+        System.out.println(a.eval(store));
         
         System.out.println(ac.eval(store));
     }
