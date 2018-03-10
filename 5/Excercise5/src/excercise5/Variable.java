@@ -8,8 +8,8 @@ package excercise5;
 import java.util.Map;
 
 /**
- *
- * @author johan
+ * @author Johan van den Heuvel s47704528
+ * @author Niels Korporaal s4768256
  */
 public class Variable extends ZeroArgumentExpression{
     public String name;

@@ -6,8 +6,8 @@
 package excercise5;
 
 /**
- *
- * @author johan
+ * @author Johan van den Heuvel s47704528
+ * @author Niels Korporaal s4768256
  */
 public abstract class DoubleArgumentExpression extends Expression{
     Expression a;

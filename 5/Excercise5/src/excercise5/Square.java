@@ -8,8 +8,8 @@ package excercise5;
 import java.util.Map;
 
 /**
- *
- * @author johan
+ * @author Johan van den Heuvel s47704528
+ * @author Niels Korporaal s4768256
  */
 public class Square extends SingleArgumentExpression{
     
@@ -19,7 +19,8 @@ public class Square extends SingleArgumentExpression{
 
     @Override
     public String toString() {
-        return a.toString() + "^" + 2;
+        String s = a.toString() + "^" + 2;
+        return "(" + s + ")";
     }
 
     @Override

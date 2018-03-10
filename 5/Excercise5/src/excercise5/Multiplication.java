@@ -8,8 +8,8 @@ package excercise5;
 import java.util.Map;
 
 /**
- *
- * @author johan
+ * @author Johan van den Heuvel s47704528
+ * @author Niels Korporaal s4768256
  */
 public class Multiplication extends DoubleArgumentExpression {
 
@@ -19,7 +19,8 @@ public class Multiplication extends DoubleArgumentExpression {
 
     @Override
     public String toString() {
-        return super.a.toString() + "*" + super.b.toString();
+        String s = super.a.toString() + "*" + super.b.toString();
+        return "(" + s + ")";
     }
 
     @Override
