@@ -8,6 +8,7 @@ package excercise5;
 import java.util.Map;
 
 /**
+ * An expression with a variable, which might be declared
  * @author Johan van den Heuvel s47704528
  * @author Niels Korporaal s4768256
  */
@@ -16,6 +17,10 @@ public class Variable extends ZeroArgumentExpression{
 
     public Variable(String name) {
         this.name = name;
+    }
+    
+    public static Variable var(String name){
+        return new Variable(name);
     }
     
     @Override

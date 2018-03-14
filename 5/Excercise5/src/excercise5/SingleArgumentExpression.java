@@ -6,6 +6,7 @@
 package excercise5;
 
 /**
+ * Expressions with a single argument a
  * @author Johan van den Heuvel s47704528
  * @author Niels Korporaal s4768256
  */

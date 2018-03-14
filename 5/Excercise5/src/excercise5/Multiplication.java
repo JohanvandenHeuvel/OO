@@ -8,6 +8,8 @@ package excercise5;
 import java.util.Map;
 
 /**
+ * Sub class of two expressions, this implements 
+ * multiplication for expressions
  * @author Johan van den Heuvel s47704528
  * @author Niels Korporaal s4768256
  */
@@ -15,6 +17,10 @@ public class Multiplication extends DoubleArgumentExpression {
 
     public Multiplication(Expression a, Expression b) {
         super(a, b);
+    }
+    
+    public static Multiplication mult(Expression a, Expression b){
+        return new Multiplication(a, b);
     }
 
     @Override
