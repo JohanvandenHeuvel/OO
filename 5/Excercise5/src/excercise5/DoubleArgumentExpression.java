@@ -6,6 +6,7 @@
 package excercise5;
 
 /**
+ * Expression with two arguments a and b
  * @author Johan van den Heuvel s47704528
  * @author Niels Korporaal s4768256
  */

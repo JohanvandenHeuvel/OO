@@ -8,12 +8,23 @@ package excercise5;
 import java.util.HashMap;
 import java.util.Map;
 
+
+import static excercise5.Addition.*;
+import static excercise5.Multiplication.*;
+import static excercise5.Constant.*;
+import static excercise5.Variable.*;
+import static excercise5.Negation.*;
+import static excercise5.Square.*;
+
+
 /**
  * @author Johan van den Heuvel s47704528
  * @author Niels Korporaal s4768256
  */
 public class Excercise5 {
 
+   
+    
     /**
      * @param args the command line arguments
      */
@@ -22,13 +33,13 @@ public class Excercise5 {
         store.put("pi", 3.1415);
 //        store.put("x", 42.);
 
-        Variable v = new Variable("x");
-        Constant two = new Constant(2.);
-        Constant three = new Constant(3.);
+        Variable v = var("x");
+        Constant two = constant(2.);
+        Constant three = constant(3.);
         
-        Multiplication m = new Multiplication(two, two);
-        Addition a = new Addition(three, m);
-        Multiplication result = new Multiplication(a, v);
+        Multiplication m = mult(two, two);
+        Addition a = add(three, m);
+        Multiplication result = mult(a, v);
         System.out.println(result);
 
     }

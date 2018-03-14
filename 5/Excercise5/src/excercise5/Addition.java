@@ -8,6 +8,8 @@ package excercise5;
 import java.util.Map;
 
 /**
+ * Sub class of two expressions, this implements 
+ * addition for expressions
  * @author Johan van den Heuvel s47704528
  * @author Niels Korporaal s4768256
  */
@@ -15,6 +17,10 @@ public class Addition extends DoubleArgumentExpression {
 
     public Addition(Expression a, Expression b) {
         super(a, b);
+    }
+    
+    public static Addition add(Expression a, Expression b){
+        return new Addition(a, b);
     }
 
     @Override

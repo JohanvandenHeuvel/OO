@@ -8,13 +8,24 @@ package excercise5;
 import java.util.Map;
 
 /**
+ * Superclass for expresions
  * @author Johan van den Heuvel s47704528
  * @author Niels Korporaal s4768256
  */
 public abstract class Expression {
 
+    /**
+     * Evaluate and expression.
+     * @param store
+     * @return 
+     */
     abstract public Expression eval(Map store);
 
+    /**
+     * Check if an expression can be reduced to a
+     * double
+     * @return 
+     */
     public boolean isConstant() {
         try {
             Double.parseDouble(this.toString());
@@ -24,6 +35,10 @@ public abstract class Expression {
         }
     }
     
+    /**
+     * Reduce and expression to a double value
+     * @return 
+     */
     public double toConstant() {
         return (double) Double.parseDouble(this.toString());
     }

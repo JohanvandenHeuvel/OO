@@ -6,9 +6,9 @@
 package excercise5;
 
 /**
+ * Superclass for Constant and Variable. This clas exists as a placeholder.
  * @author Johan van den Heuvel s47704528
  * @author Niels Korporaal s4768256
  */
 public abstract class ZeroArgumentExpression extends Expression{
-
 }
