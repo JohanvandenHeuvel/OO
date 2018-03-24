@@ -238,6 +238,10 @@ public class SlidingGame implements Configuration {
         return sum;
     }
 
+    /**
+     * Initialize the goal congfiguration, this helps with the heuristic
+     * @return 
+     */
     public static int[][] correctPuzzle() {
         int[][] board = new int[N][N];
         int counter = 1;

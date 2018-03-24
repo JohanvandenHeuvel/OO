@@ -6,6 +6,7 @@
 package excercise6;
 
 /**
+ * Note: this is not our file, but given to us on BB.
  * @author Johan van den Heuvel s47704528
  * @author Niels Korporaal s4768256
  */

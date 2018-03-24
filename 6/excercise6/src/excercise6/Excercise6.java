@@ -17,16 +17,15 @@ public class Excercise6 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        
-//        TODO: int is not big enough for hash code for bigger N
-//        TODO: manual declaration of N in SlidingGame sucks
-        
+
+//        Use N = 4 in SlidingGame
         int[] start = {
             9, 3, 6, 12,
             10, 1, 7, 16,
             13, 2, 4, 5,
             11, 8, 15, 14};
 //
+//         Use N = 4 in SlidingGame
 //        int[] start = {
 //            1, 8, 3,
 //            6, 2, 7,

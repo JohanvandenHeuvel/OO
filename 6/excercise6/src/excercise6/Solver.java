@@ -26,6 +26,11 @@ public class Solver {
         toExamine.add(g);
     }
 
+    /**
+     * Solves the current configuration. The returned goal contains its parent,
+     * which in turn contains it parent etc. up till the root node.
+     * @return 
+     */
     public Configuration solve() {
 
         if (!solvable) {
