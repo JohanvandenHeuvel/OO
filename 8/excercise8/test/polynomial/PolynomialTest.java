@@ -132,4 +132,19 @@ public class PolynomialTest {
         assertEquals(expResult, result);
     }
     
+    @Test
+    public void testAssociativity(){
+        
+    }
+    
+    @Test
+    public void testCommutativity(){
+        
+    }
+    
+    @Test
+    public void testDistributivity(){
+        
+    }
+    
 }
