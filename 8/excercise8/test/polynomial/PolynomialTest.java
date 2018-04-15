@@ -13,8 +13,8 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
- *
- * @author johan
+ * @author Johan van den Heuvel s47704528
+ * @author Niels Korporaal s4768256
  */
 public class PolynomialTest {
     
@@ -217,15 +217,15 @@ public class PolynomialTest {
         Polynomial b = new Polynomial("2 0 8 1 20 2 40 3");
         Polynomial c = new Polynomial("3 0 9 1 30 2 12 3");
         
+        //copy b
         Polynomial bplusc = new Polynomial("2 0 8 1 20 2 40 3");
         bplusc.plus(c);
+        
         a1.times(bplusc);
         
         a2.times(b);
         a3.times(c);
-        
         a2.plus(a3);
-        
         
         assertEquals(a1,a2);
     }
