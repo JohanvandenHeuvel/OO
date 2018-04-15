@@ -79,7 +79,7 @@ public class Polynomial {
     public void plus(Polynomial b) {
         ListIterator<Term> lita = terms.listIterator(),
                 litb = b.terms.listIterator();
-        while (lita.hasNext() && litb.hasNext()) {gm
+        while (lita.hasNext() && litb.hasNext()) {
                 
             Term ta = lita.next(), tb = litb.next();
             if (ta.getExp() == tb.getExp()) {

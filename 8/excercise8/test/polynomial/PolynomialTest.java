@@ -75,6 +75,14 @@ public class PolynomialTest {
         
         Polynomial expResult = new Polynomial("1 0 2 1 3 2 4 3");
         assertEquals(expResult, instance);
+        
+        Polynomial c = new Polynomial("1 0 2 1 3 2 4 3");
+        Polynomial negative = new Polynomial("-1 0");
+        Polynomial d = new Polynomial("2 0 4 1 6 2 8 3");
+        c.times(negative);
+        d.plus(c);
+
+        assertEquals(expResult, d);
     }
 
     /**
@@ -89,6 +97,11 @@ public class PolynomialTest {
         
         Polynomial expResult = new Polynomial("2 0 8 1 20 2 40 3 50 4 48 5 32 6");
         assertEquals(expResult, instance);
+        
+        
+        Polynomial c = new Polynomial("1 1");
+        c.times(c);
+        assertEquals(new Polynomial("1 2"), c);
     }
 
     /**
