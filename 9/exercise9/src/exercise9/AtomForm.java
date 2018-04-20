@@ -5,32 +5,27 @@
  */
 package exercise9;
 
-import java.util.function.BinaryOperator;
-
 /**
  *
  * @author johan
  */
 public class AtomForm implements Form{
     
-    private boolean a;
-    BinaryOperator<Operations> operator;
-    
-    public AtomForm(boolean a) {
-        this.a = a;
+    private String name;
+
+    public AtomForm(String name) {
+        this.name = name;
     }
 
-    public Form getOperand() {
-        return this;
-    }
-
-    public void accept(FormVisitor v) {
-        v.visit(this);
-    }
-    
     @Override
-    public String toString() {
-        return  a + "";
+    public <R> R accept(FormVisitor<R> visitor) {
+        return visitor.visit(this);
     }
-     
+
+    public String getName() {
+        return name;
+    }
+    
+    
+    
 }

@@ -11,24 +11,23 @@ package exercise9;
  */
 public class NotForm implements Form{
 
-    private Form a;
+    private Form operand;
 
-    public NotForm(Form a) {
-        this.a = a;
+    public NotForm(Form operand) {
+        this.operand = operand;
     }
 
     public Form getOperand() {
-        return a;
+        return operand;
     }
 
-    public void accept(FormVisitor v) {
-        v.visit(this);
+    @Override
+    public <R> R accept(FormVisitor<R> visitor) {
+        return visitor.visit(this);
     }
 
     @Override
     public String toString() {
-        return  "not " + a.toString();
+        return  "not " + operand.toString();
     }
-    
-    
 }

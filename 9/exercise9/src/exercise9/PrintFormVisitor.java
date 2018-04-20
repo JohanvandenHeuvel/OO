@@ -12,12 +12,22 @@ package exercise9;
 public class PrintFormVisitor implements FormVisitor{
 
     @Override
-    public void visit(Form form) {
-        System.out.println(form.toString());
-       
-        
+    public Object visit(BinOpForm form) {
+        return form.getLeft().accept(this) + form.getOp().string + form.getRight().accept(this);
     }
 
+    @Override
+    public Object visit(NotForm form) {
+        return "not " + form.getOperand();
+    }
 
-    
+    @Override
+    public Object visit(AtomForm form) {
+        return form.getName();
+    }
+
+    @Override
+    public Object visit(BasicForm form) {
+        return "" + form.value;
+    }
 }

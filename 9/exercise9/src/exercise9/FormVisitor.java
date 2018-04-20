@@ -9,8 +9,11 @@ package exercise9;
  *
  * @author johan
  */
-public interface FormVisitor {
+public interface FormVisitor<R> {
 
-    void visit(Form form);
+    R visit(BinOpForm form);
+    R visit(NotForm form);
+    R visit(AtomForm form);
+    R visit(BasicForm form);
     
 }

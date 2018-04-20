@@ -12,8 +12,8 @@ import java.util.function.BinaryOperator;
  * @author johan
  */
 public interface Form {
-
-    void accept(FormVisitor visitor);
+    
+    public <R> R accept(FormVisitor<R> visitor);
 
     @Override
     public String toString();
