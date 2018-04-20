@@ -5,32 +5,32 @@
  */
 package exercise9;
 
+import java.util.function.BinaryOperator;
+
 /**
  *
  * @author johan
  */
-public class AndForm implements Form{
-
-    private Form a,b;
-
-    public AndForm(Form a, Form b) {
+public class AtomForm implements Form{
+    
+    private boolean a;
+    BinaryOperator<Operations> operator;
+    
+    public AtomForm(boolean a) {
         this.a = a;
-        this.b= b;
     }
 
-    public Form[] getOperands() {
-        Form[] pair = {a,b};
-        return pair;
+    public Form getOperand() {
+        return this;
     }
 
     public void accept(FormVisitor v) {
         v.visit(this);
     }
-
+    
     @Override
     public String toString() {
-        return a.toString() + " and " + b.toString();
+        return  a + "";
     }
-    
-    
+     
 }
