@@ -19,9 +19,10 @@ public class Exercise9 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        
-//        Form a = BasicForm.TRUE;
-//        Form b = BasicForm.FALSE;
+        test1();
+    }
+    
+    public static void test1(){
         Map<String, Boolean> environ = new HashMap<String, Boolean>();
         environ.put("a", false);
         environ.put("b", false);
@@ -37,6 +38,14 @@ public class Exercise9 {
         System.out.println(print.visit(f));
         
         System.out.println(eval.visit(f));
+    }
+    
+    public static void test2(){
+
+    }
+    
+    public static void test3(){
+
     }
     
 }

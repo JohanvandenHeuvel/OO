@@ -13,7 +13,7 @@ public class PrintFormVisitor implements FormVisitor{
 
     @Override
     public Object visit(BinOpForm form) {
-        return form.getLeft().accept(this) + form.getOp().string + form.getRight().accept(this);
+        return "(" + form.getLeft().accept(this) + form.getOp().string + form.getRight().accept(this) + ")";
     }
 
     @Override
