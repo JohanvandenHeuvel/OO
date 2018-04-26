@@ -8,8 +8,8 @@ package exercise9;
 import java.util.Map;
 
 /**
- *
- * @author johan
+ * @author Johan van den Heuvel s47704528
+ * @author Niels Korporaal s4768256
  */
 public class EvalFormVisitor implements FormVisitor{
     private Map<String, Boolean> environ;
