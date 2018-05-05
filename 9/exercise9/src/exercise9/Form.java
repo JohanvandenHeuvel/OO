@@ -5,11 +5,9 @@
  */
 package exercise9;
 
-import java.util.function.BinaryOperator;
-
 /**
- *
- * @author johan
+ * @author Johan van den Heuvel s47704528
+ * @author Niels Korporaal s4768256
  */
 public interface Form {
     
