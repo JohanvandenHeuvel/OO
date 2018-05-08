@@ -6,8 +6,8 @@
 package exercise10;
 
 /**
- *
- * @author johan
+ * @author Johan van den Heuvel s47704528
+ * @author Niels Korporaal s4768256
  */
 public class Exercise10 {
 
@@ -16,7 +16,8 @@ public class Exercise10 {
      */
     public static void main(String[] args) {
         
-        //TODO no ChocolateDip after WhippedCream
+        // TODO no ChocolateDip after WhippedCream
+        // I do not know how to do this
         
         Ice ice = new VanillaIce();
         Ice ice2= new WhippedCream(ice);
