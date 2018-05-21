@@ -7,20 +7,17 @@ package exercise12;
 
 import java.util.ArrayList;
 import javafx.application.Application;
-import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import javafx.stage.Stage;
 
 /**
- *
- * @author johan
+ * @author Johan van den Heuvel s47704528
+ * @author Niels Korporaal s4768256
  */
 public class Exercise12 extends Application {
 
@@ -28,7 +25,7 @@ public class Exercise12 extends Application {
     public void start(Stage primaryStage) {
         Group group = new Group();
 
-        ArrayList<Circle> beads = new ArrayList<Circle>();
+        ArrayList<Circle> beads = new ArrayList<>();
         beads.add(new Circle(200, 200, 10, Color.BLUE));
 
         Line line = new Line(-10, 0, beads.get(0).getCenterX(), beads.get(0).getCenterY());
@@ -38,40 +35,47 @@ public class Exercise12 extends Application {
 
         Scene scene = new Scene(group, 300, 250);
 
-        scene.setOnMouseMoved(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent e) {
+        scene.setOnMouseMoved((MouseEvent e) -> {
+            /**
+             * For optimalization the color could be set on initialization
+             * instead of every move. However this is easier to implement and
+             * optimalization is not important for this.
+             */
 
-                line.setEndX(e.getX());
-                line.setEndY(e.getY());
+            /**
+             * For the exam, would it be important to follow the mvc principle
+             * for something like this? Or would that be mentioned? Maybe not
+             * explicit like " use this principle" but like "you should use a
+             * principle about this and this".
+             */
+            
+            line.setEndX(e.getX());
+            line.setEndY(e.getY());
 
-                for (int i = 0; i < beads.size(); i++) {
+            for (int i = 0; i < beads.size(); i++) {
 
-                    double offsetX = line.getEndX() / beads.size();
-                    double offsetY = line.getEndY() / beads.size();
+                double offsetX = line.getEndX() / beads.size();
+                double offsetY = line.getEndY() / beads.size();
 
-                    beads.get(i).setCenterX(line.getEndX() - (i * offsetX));
-                    beads.get(i).setCenterY(line.getEndY() - (i * offsetY));
+                double locationX = line.getEndX() - (i * offsetX);
+                double locationY = line.getEndY() - (i * offsetY);
 
-                }
+                double relativeLocation = locationX / line.getEndX();
 
-                System.out.println(beads.get(0).getCenterX());
-                System.out.println(beads.get(0).getCenterY());
+                beads.get(i).setFill(Color.rgb((int) ((1 - relativeLocation) * 255.0), 0, (int) (relativeLocation * 255.0)));
+
+                beads.get(i).setCenterX(locationX);
+                beads.get(i).setCenterY(locationY);
 
             }
-
         });
 
-        scene.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent e) {
-                beads.add(new Circle(0, 0, 10, Color.RED));
-                group.getChildren().add(beads.get(beads.size() - 1));
-            }
-
+        scene.setOnMouseClicked((MouseEvent e) -> {
+            beads.add(new Circle(0, 0, 10, Color.RED));
+            group.getChildren().add(beads.get(beads.size() - 1));
         });
 
-        primaryStage.setTitle("Hello World!");
+        primaryStage.setTitle("Exercise 12");
         primaryStage.setScene(scene);
         primaryStage.show();
     }
