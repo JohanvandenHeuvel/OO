@@ -1,4 +1,4 @@
-package exercise13_part1;
+package exercise13_part2;
 
 import java.util.Arrays;
 
@@ -21,16 +21,6 @@ public class MergeSort {
             int[] secondHalf = Arrays.copyOfRange(array, array.length / 2, array.length);
             sort(secondHalf);
             merge(firstHalf, secondHalf, array);
-
-            /*            
-            if(size < threshold){
-                sequentail_solution;
-            } else {
-                divide_in_non_overlapping_subproblems;
-                solve_subproblems_in_parallel;
-                combine_results;
-            }
-             */
         }
     }
 
