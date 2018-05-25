@@ -19,6 +19,10 @@ public class FileFinderTest {
     public static void FileFinderTest() {
         try {            
             ///home/johan/Documents
+            /**
+             * Figure out wine bug
+             * Figure out how to let it stop
+             */
             
             String goal = "FileFinder.java";
 //            String goal = "goal.txt";

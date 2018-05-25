@@ -20,8 +20,13 @@ public class Exercise13 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-           Exercise13 x = new Exercise13();
-           x.testMergeSeq();
+        /**
+         * Need to look at new Thread(this) and if the joins are correct. Also
+         * look at the timing measures.
+         */
+
+        Exercise13 x = new Exercise13();
+        x.testMergeSeq();
     }
 
     public void testMerge() {
