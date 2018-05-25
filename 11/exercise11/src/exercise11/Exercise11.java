@@ -23,7 +23,6 @@ import javafx.util.Duration;
  */
 public class Exercise11 extends Application {
 
-    private double tickAmount = 0;
     final private Button start = new Button("Start");
     final private Button stop = new Button("Stop");
     final private Button quit = new Button("Quit");
@@ -32,10 +31,8 @@ public class Exercise11 extends Application {
     final private TextField tf = new TextField();
 
     final private GridPane grid = new GridPane();
-
-    final private Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1), e -> {
-        Handler.tickerEvent(this);
-    }));
+    
+    Handler h = new Handler(this);
 
     @Override
     public void start(Stage primaryStage) {
@@ -52,23 +49,20 @@ public class Exercise11 extends Application {
         grid.add(stop, 1, 2);
         grid.add(quit, 2, 2);
 
-        timeline.setCycleCount(Timeline.INDEFINITE);
-
         start.setOnAction(e -> {
-            Handler.startTimeLine(this);
-            tickAmount = Double.parseDouble(tf.getText());
+            h.startTimeLine();
         });
 
         stop.setOnAction(e -> {
-            Handler.stopTimeLine(this);
+            h.stopTimeLine();
         });
 
         quit.setOnAction(e -> {
-            Handler.quitTimeLine(this);
+            h.quitTimeLine();
         });
 
         pb.progressProperty().addListener(o -> {
-            Handler.changeBackgroud(this);
+            h.changeBackgroud();
         });
 
         Scene scene = new Scene(grid, 300, 250);
@@ -92,11 +86,7 @@ public class Exercise11 extends Application {
         return pb;
     }
 
-    public Timeline getTimeline() {
-        return timeline;
-    }
-
-    public double getTickAmount() {
-        return tickAmount;
+    public TextField getTf() {
+        return tf;
     }
 }

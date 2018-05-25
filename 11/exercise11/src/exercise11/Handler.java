@@ -5,11 +5,14 @@
  */
 package exercise11;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.geometry.Insets;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.paint.Color;
+import javafx.util.Duration;
 
 /**
  * @author Johan van den Heuvel s47704528
@@ -17,27 +20,41 @@ import javafx.scene.paint.Color;
  */
 public class Handler {
 
-    static void tickerEvent(Exercise11 e) {
-        e.getPb().setProgress(e.getPb().getProgress() - ((double) (1 / e.getTickAmount())));
+    Exercise11 e;
+    double tickAmount;
+
+    final private Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1), e -> {
+        tickerEvent();
+    }));
+
+    public Handler(Exercise11 e) {
+        this.e = e;
+        timeline.setCycleCount(Timeline.INDEFINITE);
+
     }
 
-    static void startTimeLine(Exercise11 e) {
-        if(e.getPb().getProgress() <= 0){
+    void tickerEvent() {
+        e.getPb().setProgress(e.getPb().getProgress() - ((double) (1 / tickAmount)));
+    }
+
+    void startTimeLine() {
+        tickAmount = Double.parseDouble(e.getTf().getText());
+        if (e.getPb().getProgress() <= 0) {
             e.getPb().setProgress(1.0);
             e.getGrid().setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
         }
-        e.getTimeline().play();
+        timeline.play();
     }
 
-    static void stopTimeLine(Exercise11 e) {
-        e.getTimeline().stop();
+    void stopTimeLine() {
+        timeline.stop();
     }
 
-    static void quitTimeLine(Exercise11 e) {
+    void quitTimeLine() {
         System.exit(0);
     }
 
-    static void changeBackgroud(Exercise11 e) {
+    void changeBackgroud() {
         if (e.getPb().getProgress() <= 0) {
             e.getGrid().setBackground(new Background(new BackgroundFill(Color.RED, CornerRadii.EMPTY, Insets.EMPTY)));
         }
