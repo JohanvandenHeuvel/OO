@@ -5,19 +5,18 @@
  */
 package exercise13_part2;
 
-import exercise13_part2.MergeSort;
 import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
- * @author johan
+ * @author Johan van den Heuvel s47704528
+ * @author Niels Korporaal s4768256
  */
 public class SortSeq implements Runnable {
 
     int[] array;
-    final int THRESHOLD = 1000;
+    final int THRESHOLD = 10000001;
 
     public SortSeq(int[] array) {
         this.array = array;
@@ -25,10 +24,6 @@ public class SortSeq implements Runnable {
 
     @Override
     public void run() {
-
-//        Thread t = new Thread(this);
-//      How the fck does this work    
-
         int[] firstHalf = Arrays.copyOf(array, array.length / 2);
         int[] secondHalf = Arrays.copyOfRange(array, array.length / 2, array.length);
 
@@ -44,11 +39,13 @@ public class SortSeq implements Runnable {
             Thread left = new Thread(sortLeft);
             Thread right = new Thread(sortRight);
             Thread merge = new Thread(mergeBoth);
+            
+            left.run();
+            right.run();
 
             try {
-                left.start();
-                right.start();
-                merge.start();
+                left.join();
+                right.join();
                 merge.join();
             } catch (InterruptedException ex) {
                 Logger.getLogger(SortSeq.class.getName()).log(Level.SEVERE, null, ex);
