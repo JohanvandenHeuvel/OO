@@ -6,6 +6,8 @@
 package Buffer;
 
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 /**
  *
@@ -15,6 +17,8 @@ public class Buffer {
     private final int[] bufferArray;
     private int writeIndex = 0;
     
+    private Lock myLock = new ReentrantLock();
+    
     public static final int PAUSE = 50;
     
     public Buffer(int size){
@@ -22,23 +26,27 @@ public class Buffer {
     }
     
     public void add(int value){
-        int position = writeIndex;
-        
-        takeABreak((int)(Math.random() * PAUSE));
-        
-        bufferArray[position] = value;
-        
-        takeABreak((int)(Math.random() * PAUSE));
-        
-        writeIndex++;
-        
+        myLock.lock();
+        try {
+            // why does this matter?
+            int position = writeIndex;
+            
+            takeABreak((int)(Math.random() * PAUSE));
+            
+            bufferArray[position] = value;
+            
+            takeABreak((int)(Math.random() * PAUSE));
+            
+            writeIndex++;
+        } finally {
+            myLock.unlock();
+        }
     }
     
     public void takeABreak(int millisec){
         try {
             TimeUnit.MICROSECONDS.sleep(millisec);
         } catch (Exception e) {
-            e.printStackTrace();
         }
     }
 

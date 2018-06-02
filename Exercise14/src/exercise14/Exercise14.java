@@ -5,6 +5,9 @@
  */
 package exercise14;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author johan
@@ -15,7 +18,24 @@ public class Exercise14 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        
+        List<Integer> integers = new ArrayList<>();
+        
+        for (int i = 0; i < 100; i++) {
+            integers.add(i);
+        }
+        
+        
+       
+        Buffer buffer = new Buffer(integers.size());
+        
+        // Should the iterators be inside the Runnable classes?
+        integers.stream().forEach((integer) -> {
+            new Thread(new Producer(buffer, integer)).start();
+        });
+        
+        for (int i = 0; i < 10; i++) {
+            new Thread(new Consumer(buffer)).start();
+        }
     }
-    
 }

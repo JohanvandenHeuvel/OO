@@ -28,10 +28,12 @@ public class Test {
             wTread2.start();
             wTread2.join();
         } catch (Exception e) {
+            e.printStackTrace();
         }
 
 //        w1.run();
 //        w2.run();
+        // need to make sure threads are finnished before printing the results
         System.out.println(buffer);
     }
 }
