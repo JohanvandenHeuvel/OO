@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package exercise14;
+package exercise14_part1;
 
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
@@ -17,10 +17,6 @@ import java.util.logging.Logger;
  */
 public class Consumer<E> implements Runnable{
     Buffer buffer;
-    E item;
-    
-    private Lock myLock = new ReentrantLock();
-    private Condition emptyBuffer = myLock.newCondition();
 
     public Consumer(Buffer buffer) {
         this.buffer = buffer;
@@ -28,17 +24,11 @@ public class Consumer<E> implements Runnable{
 
     @Override
     public void run() {
-        myLock.lock();
         try {
-            while(buffer.bufferEmpty()){
-                emptyBuffer.await();
+            for (int i = 0; i < 10; i++) {
+                System.out.println( (int) buffer.get());
             }
-            item = (E) buffer.get();
-            System.out.println(item);
-        } catch (InterruptedException ex) {
-            Logger.getLogger(Producer.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            myLock.unlock();
+        } catch (Exception e) {
         }
     }
 }
