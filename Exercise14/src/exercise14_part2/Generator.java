@@ -13,18 +13,18 @@ import java.util.Iterator;
  */
 public class Generator implements Runnable {
     private final Buffer buffer;
+    private int limit;
 
-    public Generator(Buffer buffer) {
+    public Generator(Buffer buffer, int limit) {
         this.buffer = buffer;
+        this.limit = limit;
     }
 
     @Override
     public void run() {
         try {
-            for (int i = 2; i < 100; i++) {
-//                System.out.println("added: " + i);
+            for (int i = 2; i < limit; i++) {
                 buffer.put(i);
-                
             }
         } catch (Exception e) {
         }

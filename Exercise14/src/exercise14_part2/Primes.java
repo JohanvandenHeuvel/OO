@@ -7,10 +7,6 @@ package exercise14_part2;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.locks.Condition;
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
-
 /**
  *
  * @author johan
@@ -19,30 +15,25 @@ public class Primes {
 
     List<Sieve> sieves = new ArrayList<>();
 
-    private final Lock myLock;
-    private final Condition bufferEmpty, bufferFull;
-
-    public Primes() {
-        this.myLock = new ReentrantLock();
-        this.bufferEmpty = myLock.newCondition();
-        this.bufferFull = myLock.newCondition();
-    }
+    private final int N = 100000; //How many iterations
+    private final int BUFFERSIZE = 100;
 
     public void run() {
-        Buffer start = new Buffer(100);
-        new Thread(new Generator(start)).start();
+        Buffer start = new Buffer(N);
+        new Thread(new Generator(start, N)).start();
 
         // sieve for all even number
-        sieves.add(new Sieve(2, start, new Buffer(100)));
+        sieves.add(new Sieve(2, start, new Buffer(N)));
 
         new Thread(sieves.get(sieves.size()-1)).start();
 
         // new sieve for every odd prime number
+        int i = 1;
         while (true) {
             Buffer output = sieves.get(sieves.size()-1).getOutput();
             int prime = (int) output.get();
-            System.out.println(prime);
-            sieves.add(new Sieve(prime, output, new Buffer(100)));
+            System.out.println(++i + ": " + prime);
+            sieves.add(new Sieve(prime, output, new Buffer(N)));
             new Thread(sieves.get(sieves.size()-1)).start();
         }
     }
