@@ -5,42 +5,24 @@
  */
 package exercise14_part2;
 
-import java.util.concurrent.locks.Condition;
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.Iterator;
 
 /**
  *
  * @author johan
  */
-public class Producer<E> implements Runnable{
-    private final Buffer buffer;
-    private final Lock myLock = new ReentrantLock();
-    private final Condition fullBuffer = myLock.newCondition();
-    
-    private int i;
+public class Generator implements Iterator<Integer>{
+    private int next = 2;
 
-    public Producer(Buffer buffer) {
-        this.buffer = buffer;
+    @Override
+    public boolean hasNext() {
+        return true;
     }
 
     @Override
-    public void run() {
-        myLock.lock();
-        try {
-            while (true) {                
-                while(buffer.bufferFull()){
-                fullBuffer.await();
-            }
-            buffer.put(i++);
-            }
-        } catch (InterruptedException ex) {
-            Logger.getLogger(Producer.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            myLock.unlock();
-        }
+    public Integer next() {
+        //return current and then increment by 1
+        return next++;
     }
     
 }

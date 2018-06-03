@@ -6,26 +6,22 @@
 package exercise14_part2;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /**
  *
  * @author johan
  */
-public class PrimeGenerator {
+public class Primes {
     List<Sieve> sieves = new ArrayList<>();
     
-    
     public void run(){
-        Buffer predecessor = new Buffer(1000);
-        Buffer successor = new Buffer(1000);
-        
-        // puts number from 2 in the buffer
-        new Thread(new Producer(predecessor)).start();
-        
-        // buffer containing the next prime number
-        successor.put(2);
-        
-        sieves.add(new Sieve(predecessor, successor, (int) successor.get()));
+        Iterator<Integer> source = new Generator();
+        for (int i = 0; i < 100; i++) {
+            int prime = source.next();
+            source = new Sieve(prime, source);
+            System.out.println(i + ": " + prime);
+        }
     }
 }

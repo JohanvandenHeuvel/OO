@@ -5,34 +5,36 @@
  */
 package exercise14_part2;
 
+import java.util.Iterator;
+
 /**
  *
  * @author johan
  */
-public class Sieve {
+public class Sieve implements Iterator<Integer>{
+    private int prime;
+    private Iterator<Integer> source;
 
-    Buffer predecessor;
-    Buffer successor;
+    public Sieve(int prime, Iterator<Integer> source) {
+        this.prime = prime;
+        this.source = source;
+    }
+    
+    
 
-    int primeNumber;
-
-    public Sieve(Buffer predecessor, Buffer successor, int primeNumber) {
-        this.predecessor = predecessor;
-        this.successor = successor;
-        this.primeNumber = primeNumber;
+    @Override
+    public boolean hasNext() {
+        return true;
     }
 
-    /**
-     * Copy elements that are not multiples of the prime number from the input
-     * buffer to the output buffer
-     */
-    public void copy() {
-        for (int i = 0; i < predecessor.length(); i++) {
-            int element = (int) predecessor.get();
-            if (element % primeNumber != 0) {
-                successor.put(element);
-            }
+    @Override
+    public Integer next() {
+        int next = source.next();
+        while (next % prime == 0) {            
+            next = source.next();
         }
+        return next;
     }
+    
 
 }

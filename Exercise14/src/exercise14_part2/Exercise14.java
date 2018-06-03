@@ -9,18 +9,13 @@ package exercise14_part2;
  *
  * @author johan
  */
-public class Consumer<E> implements Runnable{
-    Buffer buffer;
-
-    public Consumer(Buffer buffer) {
-        this.buffer = buffer;
-    }
-
-    @Override
-    public void run() {
-        try {
-
-        } catch (Exception e) {
-        }
+public class Exercise14 {
+    
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        Primes p = new Primes();
+        p.run();
     }
 }

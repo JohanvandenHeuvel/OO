@@ -5,15 +5,12 @@
  */
 package exercise14_part1;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  *
  * @author johan
  */
 public class Exercise14 {
-
+    
     /**
      * @param args the command line arguments
      */
