@@ -11,30 +11,31 @@ import java.util.Iterator;
  *
  * @author johan
  */
-public class Sieve implements Iterator<Integer>{
+public class Sieve implements Runnable{
     private int prime;
-    private Iterator<Integer> source;
+    private Buffer input;
+    private Buffer output;
 
-    public Sieve(int prime, Iterator<Integer> source) {
+    public Sieve(int prime, Buffer input, Buffer output) {
         this.prime = prime;
-        this.source = source;
-    }
-    
-    
-
-    @Override
-    public boolean hasNext() {
-        return true;
+        this.input = input;
+        this.output = output;
     }
 
     @Override
-    public Integer next() {
-        int next = source.next();
-        while (next % prime == 0) {            
-            next = source.next();
+    public void run() {
+        for (int i = 0; i < input.length; i++) {
+            int element = (int) input.get();
+            if(element % prime != 0){
+                output.put(element);
+            }
         }
-        return next;
     }
+
+    public Buffer getOutput() {
+        return output;
+    }
+    
     
 
 }

@@ -8,8 +8,6 @@ package exercise14_part2;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -18,28 +16,46 @@ import java.util.logging.Logger;
 public class Buffer<E> {
 
     private final E[] bufferArray;
-    private int position = 0;
+    private int writeIndex = 0;
+    private int readIndex = 0;
+    private int resets = 0; //went from end to begin
 
     private final Lock myLock;
     private final Condition bufferEmpty, bufferFull;
+
+    public int length;
 
     public Buffer(int size) {
         this.bufferArray = (E[]) new Object[size];
         myLock = new ReentrantLock();
         bufferEmpty = myLock.newCondition();
         bufferFull = myLock.newCondition();
+        length = bufferArray.length;
     }
 
     void put(E element) {
         myLock.lock();
         try {
-            while (position == bufferArray.length-1) {
+            
+            while (writeIndex == readIndex && resets != 0) {
                 bufferFull.await();
             }
-            bufferArray[++position] = element;
+            
+            if(resets > 0){
+//                System.out.println(writeIndex%(resets*length));
+            bufferArray[writeIndex%(resets*length)] = element;
+            }
+            else{
+//                 System.out.println(writeIndex);
+            bufferArray[writeIndex] = element;
+            }
+            
+            writeIndex++;
+            
             bufferEmpty.signalAll();
+            
         } catch (InterruptedException ex) {
-            Logger.getLogger(Buffer.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
         } finally {
             myLock.unlock();
         }
@@ -49,16 +65,35 @@ public class Buffer<E> {
         myLock.lock();
         E result = null;
         try {
-            while (position == 0) {
+            while (readIndex >= writeIndex - 1) {
                 bufferEmpty.await();
             }
+
+            
+            if(resets > 0){
+//                System.out.println(readIndex%(resets*length));
+            result = bufferArray[readIndex%(resets*length)];
+            }
+            else{
+//                 System.out.println(readIndex);
+            result = bufferArray[readIndex];
+            }
+            
+            
+            
+            readIndex++;
             bufferFull.signalAll();
-            result = bufferArray[position--];
         } catch (InterruptedException ex) {
-            Logger.getLogger(Buffer.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
         } finally {
             myLock.unlock();
         }
         return result;
     }
+
+    public E[] getBufferArray() {
+        return bufferArray;
+    }
+    
+    
 }

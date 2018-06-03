@@ -11,18 +11,22 @@ import java.util.Iterator;
  *
  * @author johan
  */
-public class Generator implements Iterator<Integer>{
-    private int next = 2;
+public class Generator implements Runnable {
+    private final Buffer buffer;
 
-    @Override
-    public boolean hasNext() {
-        return true;
+    public Generator(Buffer buffer) {
+        this.buffer = buffer;
     }
 
     @Override
-    public Integer next() {
-        //return current and then increment by 1
-        return next++;
+    public void run() {
+        try {
+            for (int i = 2; i < 100; i++) {
+//                System.out.println("added: " + i);
+                buffer.put(i);
+                
+            }
+        } catch (Exception e) {
+        }
     }
-    
 }

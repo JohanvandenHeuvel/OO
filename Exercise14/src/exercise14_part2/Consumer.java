@@ -9,7 +9,7 @@ package exercise14_part2;
  *
  * @author johan
  */
-public class Consumer<E> implements Runnable{
+public class Consumer implements Runnable{
     Buffer buffer;
 
     public Consumer(Buffer buffer) {
