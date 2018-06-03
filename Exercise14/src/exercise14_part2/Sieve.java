@@ -8,8 +8,8 @@ package exercise14_part2;
 import java.util.Iterator;
 
 /**
- *
- * @author johan
+ * @author Johan van den Heuvel s47704528
+ * @author Niels Korporaal s4768256
  */
 public class Sieve implements Runnable{
     private int prime;

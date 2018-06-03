@@ -10,8 +10,8 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 /**
- *
- * @author johan
+ * @author Johan van den Heuvel s47704528
+ * @author Niels Korporaal s4768256
  */
 public class Buffer<E> {
 

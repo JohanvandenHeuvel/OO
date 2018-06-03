@@ -12,8 +12,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
- * @author johan
+ * @author Johan van den Heuvel s47704528
+ * @author Niels Korporaal s4768256
  */
 public class Buffer<E> {
 
