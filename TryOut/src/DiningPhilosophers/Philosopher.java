@@ -24,7 +24,7 @@ public class Philosopher implements Runnable {
     }
 
     private void doAction(String action) {
-        System.out.println("Philosopher " + myId + action);
+        System.out.println("Philosopher " + myId + " " + action);
         takeABreak((int) (Math.random() * 100));
     }
 

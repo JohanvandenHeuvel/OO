@@ -2,7 +2,7 @@
 package exercise15;
 
 /**
- * main Class: create a SImulation and execute it.
+ * main Class: create a Simulation and execute it.
  * 
  * @author pieterkoopman
  */
