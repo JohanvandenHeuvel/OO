@@ -13,6 +13,8 @@ public class Taxi implements Runnable {
     private final int transportationTime;
     private final Station station;
 
+    private boolean stopped;
+
     private int totalNrOfPassengers = 0;
     private int nrOfRides = 0;
 
@@ -55,14 +57,23 @@ public class Taxi implements Runnable {
         return totalNrOfPassengers;
     }
 
+    public void stop() {
+        stopped = true;
+    }
+
     @Override
     public void run() {
-        while(!station.isClosed()){
+        while (!station.isClosed() && !stopped) {
 //            System.out.println("Taxi " + taxiId + " is working");
             int transported = station.leaveStation(maxNrOfPassengers);
-            totalNrOfPassengers += transported;
-            nrOfRides++;
-            System.out.println("Taxi " + taxiId + " takes " + transported + " passengers");
+            if (transported == 0) {
+                stop();
+            } else {
+                totalNrOfPassengers += transported;
+                nrOfRides++;
+                System.out.println("Taxi " + taxiId + " takes " + transported + " passengers");
+            }
+
         }
         System.out.println("Taxi " + taxiId + " is done");
     }
