@@ -48,8 +48,8 @@ public class Train implements Runnable {
 
     @Override
     public void run() {
-        while(nrOfTrips != 10) {
-            loadPassengers(Util.getRandomNumber(60, 90));
+        while(nrOfTrips != OOTaxiMain.TRAIN_TRIPS) {
+            loadPassengers(Util.getRandomNumber(OOTaxiMain.MIN_TRAVELLERS, OOTaxiMain.MAX_TRAVELLERS));
             unloadPassengers();
         }
         System.out.println("train is done");

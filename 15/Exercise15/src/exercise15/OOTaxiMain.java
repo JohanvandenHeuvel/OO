@@ -30,13 +30,6 @@ public class OOTaxiMain {
     private static Train train;
     private static Station station;
 
-    /**
-     * hasEnded: is the simulation finished? nextTaxi: number of the taxi to be
-     * use in next step
-     */
-    private boolean hasEnded = false;
-    private int nextTaxi = 0;
-
     public static void main(String[] args) {
         station = new Station();
         taxis = new Taxi[NR_OF_TAXIS];
@@ -56,20 +49,13 @@ public class OOTaxiMain {
         }
         
         while(!executor.isShutdown()){
-//            System.out.println("waiting:" + station.getWaitingPassengers());
-//            System.out.println("train trips:" + train.getNrOfTrips());
-            
-            if (station.getWaitingPassengers() == 0 && train.getNrOfTrips() == 10) {
+            if (station.getWaitingPassengers() == 0 && train.getNrOfTrips() == TRAIN_TRIPS) {
                 System.out.println("shutting down");
                 executor.shutdown();
                 train.closeStation();
                 showStatistics();
             }
         }
-    }
-
-    public boolean ended() {
-        return hasEnded;
     }
 
     public static void showStatistics() {

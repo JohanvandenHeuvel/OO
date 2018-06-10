@@ -45,14 +45,12 @@ public class Station {
         try {
             int nrOfPassengers = 0;
             while (nrOfPassengersAtStation == 0 && !trainDone) {
-//                System.out.println("waiting " + isClosed);
                 waitingPassengers.await();
             }
             nrOfPassengers = Math.min(nrOfPassengersAtStation, maxNrOfPassengers);
             nrOfPassengersAtStation -= nrOfPassengers;
 
             if(nrOfPassengersAtStation == 0 && trainDone){
-//                System.out.println("done");
                 waitingPassengers.signalAll();
             }
             return nrOfPassengers;
